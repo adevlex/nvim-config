@@ -24,4 +24,3 @@ return {
     base0E = "#c678dd",
     base0F = "#be5046",
 }
-
