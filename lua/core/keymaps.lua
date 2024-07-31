@@ -29,6 +29,7 @@ end
 vim.g.mapleader = " "
 
 map("n", "<C-a>", "gg<S-v>G")
+map("n", "<C-b>", "<cmd>lua require\'core.functions\'.build_run()<CR>")
 -- Nvim-Tree
 map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
 -- Debugger
@@ -112,4 +113,3 @@ map('n', '<leader>pu', '<cmd>Lazy update<CR>')
 map('n', '<leader>tf', '<cmd>ToggleTerm direction=float<CR>')
 map('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<CR>')
 map('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>')
-
