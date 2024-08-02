@@ -48,7 +48,7 @@ return {
     ["@type.builtin"] = { fg = colors.base0A },
     ["@number.float"] = { fg = colors.base09 },
 
-    ["@variable"] = { fg = colors.base09 },
+    ["@variable"] = { fg = colors.base05 },
     ["@variable.builtin"] = { fg = colors.base09 },
     ["@variable.member"] = { fg = colors.base08 },
     ["@variable.member.key"] = { fg = colors.base08 },
