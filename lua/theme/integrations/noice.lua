@@ -8,7 +8,7 @@ end
 return {
     NoiceMini = { bg = colors.darker },
     NoiceCmdlinePopup = { bg = colors.darker },
-    NoiceCmdlinePopupBorder = { link = "NoiceCmdlinePopupBorder" }, --{ bg = colors.darker, fg = colors.darker },
+    NoiceCmdlinePopupBorder = { bg = colors.darker, fg = colors.darker },
     NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
     NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.darker },
     NoiceLspProgressSpinner = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
