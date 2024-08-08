@@ -58,7 +58,7 @@ g["loaded_ruby_provider"] = 0
 
 g.toggle_cmp = true
 g.code_action_menu_window_border = 'single'
-g.NvimTheme = "palenight"
+g.NvimTheme = "catppuccin"
 g.themeCache = vim.fn.stdpath "data" .. "/colors_data/"
 g.transparency = true
 g.loadNvimTheme = true
