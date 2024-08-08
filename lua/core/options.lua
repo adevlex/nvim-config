@@ -60,6 +60,6 @@ g.toggle_cmp = true
 g.code_action_menu_window_border = 'single'
 g.NvimTheme = "catppuccin"
 g.themeCache = vim.fn.stdpath "data" .. "/colors_data/"
-g.transparency = true
+g.transparency = false
 g.loadNvimTheme = true
 g.statusStyle = 'fancy' -- fancy, minimal, blocks
