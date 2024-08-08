@@ -24,6 +24,15 @@ local function getFilename(buf)
     return (#vim.api.nvim_buf_get_name(buf) ~= 0) and vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t") or ""
 end
 
+-- Function to get the filetype icon
+local function getFileIcon(buf)
+    local devicons = require('nvim-web-devicons')
+    local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
+    local ext = vim.fn.fnamemodify(name, ":e")
+    local icon, hl = devicons.get_icon(name, ext, { default = true })
+    return icon, hl
+end
+
 -- Function to determine if the filename is the same as the current buffer
 local function isSameFilename(buffer, filename)
     return vim.api.nvim_buf_is_valid(buffer) and vim.api.nvim_buf_is_loaded(buffer) and vim.bo[buffer].buflisted and
@@ -32,15 +41,16 @@ end
 
 -- Function to handle buffer status colors and buttons
 local function formatBufferInfo(buf, filename)
+    local icon, icon_hl = getFileIcon(buf)
     local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󰅜 %X"
     local isCurrentBuf = buf == vim.api.nvim_get_current_buf()
 
     if isCurrentBuf then
-        filename = "%#BufflineBufOnActive#  " .. "  " .. filename
+        filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnActive# " .. filename
         close_btn = (vim.bo[0].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOnModified#   ")
             or ("%#BuffLineBufOnClose#" .. close_btn) .. " "
     else
-        filename = "%#BufflineBufOnInactive#  " .. "  " .. filename
+        filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnInactive# " .. filename
         close_btn = (vim.bo[buf].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOffModified#   ")
             or ("%#BuffLineBufOffClose#" .. close_btn) .. " "
     end
