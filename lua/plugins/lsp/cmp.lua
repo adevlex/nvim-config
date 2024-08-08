@@ -64,12 +64,12 @@ return {
 
             window = {
                 completion = {
-                    border = "double",
+                    border = "solid",
                     scrollbar = false,
                     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None"
                 },
                 documentation = {
-                    border = "double",
+                    border = "solid",
                     scrollbar = false,
                     winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,CursorLine:PmenuSel,Search:None"
                 }
