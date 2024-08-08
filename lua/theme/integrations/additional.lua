@@ -8,12 +8,12 @@ end
 return {
     Normal = { fg = colors.foreground, bg = colors.background },
     NormalFloat = { bg = colors.darker },
-    -- FloatBorder = { fg = colors.darker, bg = colors.darker },
+    FloatBorder = { fg = colors.darker, bg = colors.darker },
     FloatTitle = { fg = colors.foreground, bg = colors.darker, bold = true },
     WinSeparator = { fg = colors.lighter },
     WinBar = { link = "Normal" },
     WinBarNC = { link = "Normal" },
-    --
+
     WildMenu = { fg = colors.base08, bg = colors.base0A },
     Comment = { fg = utils.blend(colors.foreground, colors.background, 0.2), italic = true },
 
