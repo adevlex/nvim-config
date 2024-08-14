@@ -1,7 +1,6 @@
 -- NOTE: Neovim options
 
 vim.loader.enable()
---local config = require("core.cfg")
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
