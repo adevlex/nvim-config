@@ -6,16 +6,16 @@ if not colors then
 end
 
 return {
-    ["@variable"] = { fg = colors.base05 },
+    ["@variable"] = { fg = colors.base09 },
     ["@variable.builtin"] = { fg = colors.base09 },
-    ["@variable.parameter"] = { fg = colors.base08 },
+    ["@variable.parameter"] = { fg = colors.base08, italic = true },
     ["@variable.member"] = { fg = colors.base08 },
     ["@variable.member.key"] = { fg = colors.base08 },
 
     ["@module"] = { fg = colors.base08 },
     -- ["@module.builtin"] = { fg = colors.base08 },
 
-    ["@constant"] = { fg = colors.base08 },
+    ["@constant"] = { fg = colors.base08, bold = true },
     ["@constant.builtin"] = { fg = colors.base09 },
     ["@constant.macro"] = { fg = colors.base08 },
 
@@ -82,7 +82,7 @@ return {
     ["@markup.strikethrough"] = { strikethrough = true },
     ["@markup.quote"] = { bg = colors.base00 },
 
-    ["@comment"] = { fg = colors.base03, italic = true },
+    ["@comment"] = { fg = colors.base06, italic = true },
     ["@comment.todo"] = { fg = colors.base00, bg = colors.base07 },
     ["@comment.warning"] = { fg = colors.base00, bg = colors.base09 },
     ["@comment.note"] = { fg = colors.base00, bg = colors.blue },
