@@ -45,7 +45,6 @@ return
             "html",
             "pyright",
             "tsserver",
-            "emmet_ls",
             "clangd",
             "cssls",
             "omnisharp",
@@ -54,7 +53,6 @@ return
             "jsonls",
             "lemminx",
             "cmake",
-            "tailwindcss",
         }
 
         for _, k in ipairs(servers) do
@@ -78,6 +76,12 @@ return
                     },
                 },
             }
+        }
+
+        lspconfig.emmet_ls.setup {
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
+            filetypes = { "html", "css", "scss", "javascriptreact", "typescriptreact", "javascript", "typescript", "php" },
         }
 
         lspconfig.intelephense.setup {
