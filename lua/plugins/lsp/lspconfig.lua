@@ -53,6 +53,7 @@ return
             "jsonls",
             "lemminx",
             "cmake",
+            "emmet_ls",
         }
 
         for _, k in ipairs(servers) do
@@ -76,12 +77,6 @@ return
                     },
                 },
             }
-        }
-
-        lspconfig.emmet_ls.setup {
-            on_attach = M.on_attach,
-            capabilities = M.capabilities,
-            filetypes = { "html", "css", "scss", "javascriptreact", "typescriptreact", "javascript", "typescript", "php" },
         }
 
         lspconfig.intelephense.setup {
