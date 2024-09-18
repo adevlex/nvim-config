@@ -6,7 +6,7 @@ local M = function(m)
     local info = #diagnostic.get(0, { severity = diagnostic.severity.INFO })
     if (m == 'blocks' or m == "minimal") then
         ERROR = (errors and errors > 0) and
-            ("%#StalineLspErrorIcon#" .. " " .. "%#StalineLspError#" .. errors) or ""
+            ("%#StalineLspErrorIcon#" .. "󰰱 " .. "%#StalineLspError#" .. errors) or ""
         WARNING = (warnings and warnings > 0) and
             ("%#StalineLspWarningIcon#" .. " " .. "%#StalineLspWarning#" .. warnings) or ""
         HINT = (hints and hints > 0) and
@@ -15,7 +15,7 @@ local M = function(m)
             or ""
     elseif (m == 'fancy') then
         ERROR = (errors and errors > 0) and
-            ("%#StalineLspErrorIcon#" .. " " .. "%#StalineLspError#" .. errors) or ""
+            ("%#StalineLspErrorIcon#" .. "󰰱 " .. "%#StalineLspError#" .. errors) or ""
         WARNING = (warnings and warnings > 0) and
             ("%#StalineLspWarningIcon#" .. " " .. "%#StalineLspWarning#" .. warnings) or ""
         HINT = (hints and hints > 0) and
@@ -24,7 +24,7 @@ local M = function(m)
             or ""
     elseif (m == 'minimal') then
         ERROR = (errors and errors > 0) and
-            ("%#StalineLspErrorMinimalIcon#" .. "  " .. "%#StalineLspMinimalError#" .. errors .. " ") or ""
+            ("%#StalineLspErrorMinimalIcon#" .. " 󰰱 " .. "%#StalineLspMinimalError#" .. errors .. " ") or ""
         WARNING = (warnings and warnings > 0) and
             ("%#StalineLspWarningMinimalIcon#" .. "  " .. "%#StalineLspMinimalWarning#" .. warnings .. " ") or ""
         HINT = (hints and hints > 0) and
