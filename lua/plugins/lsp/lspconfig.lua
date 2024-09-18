@@ -44,7 +44,7 @@ return
             "jdtls",
             "html",
             "pyright",
-            "tsserver",
+            "ts_ls",
             "clangd",
             "cssls",
             "omnisharp",
