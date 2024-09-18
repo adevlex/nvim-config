@@ -46,4 +46,5 @@ return {
     DevIconGitIgnore = { fg = colors.red },
     DevIconSh = { fg = colors.green },
     DevIconGitlabCI = { fg = colors.red },
+    DevIconSQL = { fg = colors.base0A },
 }
