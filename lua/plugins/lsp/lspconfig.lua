@@ -33,7 +33,7 @@ return
             },
         }
 
-        local signs = { Error = " ", Warn = " ", Hint = "󰌵 ", Info = " " }
+        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
@@ -49,11 +49,9 @@ return
             "cssls",
             "omnisharp",
             "texlab",
-            "intelephense",
             "jsonls",
             "lemminx",
             "cmake",
-            "emmet_ls",
         }
 
         for _, k in ipairs(servers) do
@@ -76,6 +74,24 @@ return
                         globals = { "vim", "opts", "ft_cmds" },
                     },
                 },
+            }
+        }
+
+        lspconfig.emmet_ls.setup {
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
+            filetypes = { 'html', "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte", "php", "twig" },
+            initialize_options = {
+                html = {
+                    options = {
+                        ["bem.enabled"] = true,
+                    }
+                },
+                php = {
+                    options = {
+                        ["bem.enabled"] = true,
+                    }
+                }
             }
         }
 
@@ -118,6 +134,23 @@ return
                 }
             },
             filetypes = { "dosini" },
+        }
+
+        lspconfig.sqlls.setup {
+            on_attach = M.on_attach,
+            capabilities = M.capabilities,
+            filetypes = { "sql", "mysql" },
+            root_dir = function() return vim.fn.getcwd() end,
+            settings = {
+                sqlLanguageServer = {
+                    connections = {
+                        {
+                            driver = "mysql",
+                            dataSourceName = "root:password@tcp(localhost:3306)/phpmyadmin",
+                        }
+                    }
+                }
+            }
         }
         return M
     end
