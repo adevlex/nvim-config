@@ -1,6 +1,6 @@
 return {
     foreground = "#abb2bf",
-    background = "#292d37",
+    background = "#1e2128",
     darker = "#1b1f27",
     lighter = "#252931",
     red = "#e06c75",
