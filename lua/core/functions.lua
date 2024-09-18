@@ -47,6 +47,7 @@ local function build_run()
         jl = { default = "julia %" },
         rb = { default = "ruby %" },
         pl = { default = "perl %" },
+        tex = { default = "pdflatex %" },
     }
 
     local function execute_command(cmd)
@@ -58,19 +59,19 @@ local function build_run()
         return
     end
 
-    local choices = vim.tbl_keys(supported_filetypes[file_extension])
-    if #choices == 0 then
+    local options = vim.tbl_keys(supported_filetypes[file_extension])
+    if #options == 0 then
         notify("It doesn't contain any command", vim.log.levels.WARN, { title = "Code Runner" })
         return
     end
 
-    if #choices == 1 then
-        execute_command(supported_filetypes[file_extension][choices[1]])
+    if #options == 1 then
+        execute_command(supported_filetypes[file_extension][options[1]])
         return
     end
 
-    vim.ui.select(choices, { prompt = "Choose a command: " }, function(choice)
-        local selected_cmd = supported_filetypes[file_extension][choice]
+    vim.ui.select(options, { prompt = "Choose a command: " }, function(option)
+        local selected_cmd = supported_filetypes[file_extension][option]
         if selected_cmd then
             execute_command(selected_cmd)
         end
