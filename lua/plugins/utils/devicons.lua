@@ -5,6 +5,7 @@ return {
 
         local config = {
             override = {
+                sql = { icon = "", name = "SQL" },
                 cs = { icon = " ", name = "Csharp" },
                 c = { icon = "", name = "C" },
                 css = { icon = "", name = "CSS" },
