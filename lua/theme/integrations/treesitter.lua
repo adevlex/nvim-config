@@ -82,7 +82,7 @@ return {
     ["@markup.strikethrough"] = { strikethrough = true },
     ["@markup.quote"] = { bg = colors.base00 },
 
-    ["@comment"] = { fg = colors.base06, italic = true },
+    ["@comment"] = { fg = colors.base04, italic = true },
     ["@comment.todo"] = { fg = colors.base00, bg = colors.base07 },
     ["@comment.warning"] = { fg = colors.base00, bg = colors.base09 },
     ["@comment.note"] = { fg = colors.base00, bg = colors.blue },
