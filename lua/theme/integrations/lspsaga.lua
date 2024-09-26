@@ -9,4 +9,10 @@ return {
     SagaBorder = { bg = colors.darker, fg = colors.darker },
     RenameNormal = { bg = colors.darker },
     RenameBorder = { bg = colors.darker, fg = colors.darker },
+
+    -- Winbar
+    SagaWinbarSep = { fg = colors.foreground },
+    SagaWinbarFileName = { fg = colors.foreground },
+    SagaWinbarFolderName = { fg = colors.foreground },
+    SagaWinbarFolder = { fg = colors.foreground },
 }
