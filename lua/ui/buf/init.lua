@@ -19,6 +19,17 @@ vim.api.nvim_create_user_command("BufflineNext", function()
     require("ui.buf.fn").tabuflineNext()
 end, {})
 
+local function shortenFilename(filename, max_length)
+    -- Obtener la extensión y el nombre base
+    local ext = vim.fn.fnamemodify(filename, ":e")    -- Obtener la extensión
+    local base = vim.fn.fnamemodify(filename, ":t:r") -- Obtener el nombre sin la extensión
+
+    if #base + #ext + 3 > max_length then
+        return base:sub(1, max_length - #ext - 3) .. "..." .. ext
+    end
+    return filename
+end
+
 -- Function to get the filename
 local function getFilename(buf)
     return (#vim.api.nvim_buf_get_name(buf) ~= 0) and vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t") or ""
@@ -30,7 +41,14 @@ local function getFileIcon(buf)
     local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buf), ":t")
     local ext = vim.fn.fnamemodify(name, ":e")
     local icon, hl = devicons.get_icon(name, ext, { default = true })
-    return icon, hl
+    local isCurrentBuf = buf == vim.api.nvim_get_current_buf()
+
+    if isCurrentBuf then
+        hl = hl
+    else
+        hl = "BufflineBufOnInactive"
+    end
+    return " " .. icon, hl
 end
 
 -- Function to determine if the filename is the same as the current buffer
@@ -44,6 +62,8 @@ local function formatBufferInfo(buf, filename)
     local icon, icon_hl = getFileIcon(buf)
     local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󰅜 %X"
     local isCurrentBuf = buf == vim.api.nvim_get_current_buf()
+
+    filename = shortenFilename(filename, 12)
 
     if isCurrentBuf then
         filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnActive# " .. filename
