@@ -63,7 +63,7 @@ local function formatBufferInfo(buf, filename)
     local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󰅜 %X"
     local isCurrentBuf = buf == vim.api.nvim_get_current_buf()
 
-    filename = shortenFilename(filename, 12)
+    filename = shortenFilename(filename, 20)
 
     if isCurrentBuf then
         filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnActive# " .. filename
