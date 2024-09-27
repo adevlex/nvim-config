@@ -49,7 +49,7 @@ return {
             Unit = " 󰻬 ",
             Value = " 󱊩 ",
             Variable = " 󰜵 ",
-            Codeium = " 󱎙 ",
+            Supermaven = " 󰒔 ",
         }
 
         cmp.setup({
@@ -108,7 +108,7 @@ return {
                         luasnip = "󰢑 [Snp]",
                         cmdline = " [Cmd]",
                         nvim_lua = " [Lua]",
-                        codeium = "󱎙 [Aic]",
+                        Supermaven = "󰒔 [Svm]",
                     })[entry.source.name]
                     return vim_item
                 end,
@@ -123,7 +123,7 @@ return {
                 { name = "vsnip" },
                 { name = "luasnip" },
                 { name = "buffer" },
-                { name = "codeium" },
+                { name = "supermaven" },
             }),
         })
     end
