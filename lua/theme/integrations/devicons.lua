@@ -29,7 +29,7 @@ return {
     DevIconJpg = { fg = utils.mix(colors.red, colors.blue, 0.5) },
     DevIconMp3 = { fg = colors.green },
     DevIconMp4 = { fg = colors.red },
-    DevIconPy = { fg = utils.mix(colors.foreground, colors.base09, 0.7) },
+    DevIconPy = { fg = utils.mix(colors.foreground, colors.base0A, 0.7) },
     DevIconToml = { fg = colors.blue },
     DevIconRb = { fg = colors.red },
     DevIconrpm = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5) },
