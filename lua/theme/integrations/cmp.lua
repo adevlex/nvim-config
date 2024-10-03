@@ -4,44 +4,56 @@ local utils = require("core.utils")
 if not colors then
     return { error = "colors not found" }
 end
+-- Generar background con transparencia usando 'blend'
+local function createAlphaBg(foreground, alpha)
+    return utils.blend(foreground, colors.background, alpha)
+end
+
+-- Mezclar colores usando 'mix'
+local function mixColors(c1, c2, weight)
+    return utils.mix(c1, c2, weight)
+end
+
 
 return {
-    CmpItemKindArray = { fg = colors.darker, bg = colors.base0B },
-    CmpItemKindBoolean = { fg = colors.darker, bg = colors.base0A },
-    CmpItemKindClass = { fg = colors.darker, bg = colors.base0D },
-    CmpItemKindColor = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindConstant = { fg = colors.darker, bg = colors.base0C },
-    CmpItemKindConstructor = { fg = colors.darker, bg = colors.base05 },
-    CmpItemKindEnum = { fg = colors.darker, bg = colors.base09 },
-    CmpItemKindEnumMember = { fg = colors.darker, bg = colors.base08 },
-    CmpItemKindEvent = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindField = { fg = colors.darker, bg = colors.base09 },
-    CmpItemKindFile = { fg = colors.darker, bg = colors.base0D },
-    CmpItemKindFolder = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindFunction = { fg = colors.darker, bg = colors.base0C },
-    CmpItemKindInterface = { fg = colors.darker, bg = colors.base0F },
-    CmpItemKindKey = { fg = colors.darker, bg = colors.red },
-    CmpItemKindKeyword = { fg = colors.darker, bg = colors.base0B },
-    CmpItemKindMethod = { fg = colors.darker, bg = colors.base09 },
-    CmpItemKindModule = { fg = colors.darker, bg = colors.base0D },
-    CmpItemKindNamespace = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindNull = { fg = colors.darker, bg = colors.base0C },
-    CmpItemKindNumber = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindObject = { fg = colors.darker, bg = colors.base09 },
-    CmpItemKindOperator = { fg = colors.darker, bg = colors.base08 },
-    CmpItemKindPackage = { fg = colors.darker, bg = colors.base0B },
-    CmpItemKindProperty = { fg = colors.darker, bg = colors.base0A },
-    CmpItemKindReference = { fg = colors.darker, bg = colors.base0D },
-    CmpItemKindSnippet = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindString = { fg = colors.darker, bg = colors.base0C },
-    CmpItemKindStruct = { fg = colors.darker, bg = colors.base0F },
-    CmpItemKindText = { fg = colors.darker, bg = colors.base0F },
-    CmpItemKindTypeParameter = { fg = colors.darker, bg = colors.base0B },
-    CmpItemKindUnit = { fg = colors.darker, bg = colors.base0A },
-    CmpItemKindValue = { fg = colors.darker, bg = colors.base0D },
-    CmpItemKindVariable = { fg = colors.darker, bg = colors.base0E },
-    CmpItemKindCodeium = { fg = colors.darker, bg = colors.base0C },
+    -- Aquí utilizo 'foreground' sólido y 'background' con alpha para el contraste
+    CmpItemKindArray = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
+    CmpItemKindBoolean = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
+    CmpItemKindClass = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
+    CmpItemKindColor = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindConstant = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
+    CmpItemKindConstructor = { fg = colors.base05, bg = createAlphaBg(colors.base05, 0.2) },
+    CmpItemKindEnum = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
+    CmpItemKindEnumMember = { fg = colors.base08, bg = createAlphaBg(colors.base08, 0.2) },
+    CmpItemKindEvent = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindField = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
+    CmpItemKindFile = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
+    CmpItemKindFolder = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindFunction = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
+    CmpItemKindInterface = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
+    CmpItemKindKey = { fg = colors.red, bg = createAlphaBg(colors.red, 0.2) },
+    CmpItemKindKeyword = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
+    CmpItemKindMethod = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
+    CmpItemKindModule = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
+    CmpItemKindNamespace = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindNull = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
+    CmpItemKindNumber = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindObject = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
+    CmpItemKindOperator = { fg = colors.base08, bg = createAlphaBg(colors.base08, 0.2) },
+    CmpItemKindPackage = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
+    CmpItemKindProperty = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
+    CmpItemKindReference = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
+    CmpItemKindSnippet = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindString = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
+    CmpItemKindStruct = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
+    CmpItemKindText = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
+    CmpItemKindTypeParameter = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
+    CmpItemKindUnit = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
+    CmpItemKindValue = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
+    CmpItemKindVariable = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
+    CmpItemKindCodeium = { fg = colors.base0B, bg = utils.blend(colors.base0C, colors.darker, 0.4) },
 
+    -- Otros elementos del cmp
     CmpItemAbbr = { fg = colors.foreground },
     CmpItemAbbrDeprecated = { fg = colors.base0B },
     CmpItemAbbrMatch = { fg = colors.base05 },
