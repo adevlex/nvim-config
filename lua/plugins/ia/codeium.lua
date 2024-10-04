@@ -5,6 +5,8 @@ return {
         "hrsh7th/nvim-cmp",
     },
     config = function()
-        require("codeium").setup({})
+        require("codeium").setup({
+            timeout_ms = 1000,
+        })
     end
 }
