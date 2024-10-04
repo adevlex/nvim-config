@@ -8,14 +8,14 @@ end
 return {
     Normal = { fg = colors.foreground, bg = colors.background },
     NormalFloat = { bg = colors.darker },
-    FloatBorder = { fg = colors.darker, bg = colors.darker },
-    FloatTitle = { fg = colors.foreground, bg = colors.darker, bold = true },
-    WinSeparator = { fg = colors.lighter },
+    FloatBorder = { fg = colors.darker },
+    FloatTitle = { fg = colors.foreground, bg = colors.background, bold = true },
+    WinSeparator = { fg = colors.background },
     WinBar = { link = "Normal" },
     WinBarNC = { link = "Normal" },
 
     WildMenu = { fg = colors.base08, bg = colors.base0A },
-    Comment = { fg = utils.blend(colors.foreground, colors.background, 0.2), italic = true },
+    Comment = { fg = colors.base04, italic = true },
 
     Folded = { fg = utils.blend(colors.foreground, colors.background, 0.3), bg = colors.background },
     FoldColumn = { fg = utils.blend(colors.foreground, colors.background, 0.3), bg = colors.background },
@@ -23,7 +23,7 @@ return {
     Cursor = { fg = colors.base00, bg = colors.base05 },
     CursorLine = { bg = utils.blend(colors.foreground, colors.background, 0.02) },
     CursorLineNr = { fg = colors.foreground, bold = true },
-    LineNr = { fg = utils.blend(colors.foreground, colors.background, 0.3), bg = colors.background },
+    LineNr = { fg = utils.blend(colors.foreground, colors.background, 0.3) },
 
     CursorColumn = { bg = colors.background },
     ColorColumn = { bg = colors.background },
