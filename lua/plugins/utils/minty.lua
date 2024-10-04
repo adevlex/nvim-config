@@ -1,4 +1,7 @@
 return {
     "NvChad/minty",
-    dependencies = { "NvChad/volt" },
+    dependencies = {
+        "NvChad/volt",
+        "NvChad/menu",
+    },
 }
