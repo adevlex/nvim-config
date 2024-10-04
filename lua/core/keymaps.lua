@@ -116,5 +116,5 @@ map('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>')
 
 -- Minty
 -- Definir el keymap para activar minty.huefy y minty.shades
-map("n", "<leader>mh", ":lua require('minty.huefy').toggle()<CR>", { noremap = true, silent = true })
-map("n", "<leader>ms", ":lua require('minty.shades').toggle()<CR>", { noremap = true, silent = true })
+map("n", "<leader>mh", ":lua require('minty.huefy').open()<CR>", { noremap = true, silent = true })
+map("n", "<leader>ms", ":lua require('minty.shades').open()<CR>", { noremap = true, silent = true })
