@@ -1,5 +1,6 @@
 -- Definir la función ClickGit en el ámbito global
 function ClickGit()
+    ---@diagnostic disable-next-line: unused-local
     local status_ok, toggleterm = pcall(require, "toggleterm")
     if not status_ok then
         vim.notify("toggleterm.nvim isn't installed!!!", vim.log.levels.ERROR)
@@ -18,13 +19,15 @@ function ClickGit()
     lazygit:toggle()
 end
 
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+-- local function map(mode, lhs, rhs, opts)
+--     local options = { noremap = true, silent = true }
+--     if opts then
+--         options = vim.tbl_extend("force", options, opts)
+--     end
+--     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+-- end
+
+local map = vim.keymap.set
 
 vim.g.mapleader = " "
 
@@ -85,6 +88,7 @@ map('n', '<leader>lr', '<cmd>Lspsaga rename<CR>')
 map('n', '<leader>li', '<cmd>LspInfo<CR>')
 
 -- Neovim
+---@diagnostic disable-next-line: unused-local
 local config_dir = { vim.fn.stdpath("config") .. "/" }
 map('n', '<leader>nf',
     ':lua require("telescope.builtin").find_files{prompt_title="Config Files", search_dirs=config_dir, cwd=vim.fn.stdpath("config").."/"}<CR>')
@@ -118,3 +122,9 @@ map('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>')
 -- Definir el keymap para activar minty.huefy y minty.shades
 map("n", "<leader>mh", ":lua require('minty.huefy').open()<CR>", { noremap = true, silent = true })
 map("n", "<leader>ms", ":lua require('minty.shades').open()<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<RightMouse>", function()
+    vim.cmd.exec '"normal! \\<RightMouse>"'
+
+    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+    require("menu").open(options, { mouse = true })
+end, {})
