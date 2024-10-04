@@ -60,18 +60,18 @@ end
 -- Function to handle buffer status colors and buttons
 local function formatBufferInfo(buf, filename)
     local icon, icon_hl = getFileIcon(buf)
-    local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󰅜 %X"
+    local close_btn = "%" .. buf .. "@BufflineKillBuf@ 󰖭 %X"
     local isCurrentBuf = buf == vim.api.nvim_get_current_buf()
 
     filename = shortenFilename(filename, 20)
 
     if isCurrentBuf then
         filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnActive# " .. filename
-        close_btn = (vim.bo[0].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOnModified#   ")
+        close_btn = (vim.bo[0].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOnModified#  ")
             or ("%#BuffLineBufOnClose#" .. close_btn) .. " "
     else
         filename = " %#" .. icon_hl .. "#" .. icon .. " %#BufflineBufOnInactive# " .. filename
-        close_btn = (vim.bo[buf].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOffModified#   ")
+        close_btn = (vim.bo[buf].modified and "%" .. buf .. "@BufflineKillBuf@%#BuffLineBufOffModified#  ")
             or ("%#BuffLineBufOffClose#" .. close_btn) .. " "
     end
 
@@ -130,10 +130,10 @@ M.getTabline = function()
     if vim.bo.filetype == "html" then
         run = "%#BuffLineRun# %@Run@" .. "󰀂  "
     end
-    local button = "%#BufflineButton# %@ToggleTheme@" .. "󱥚  "
+    local themebutton = "%#BufflineButton# %@ToggleTheme@" .. "󱥚  "
     local trans = "%#BufflineTrans# %@ToggleTrans@" .. "󱡓  "
     local split = "%#BuffLineSplit# %@Split@" .. "  "
-    local closebutton = "%#BufflineCloseButton# %@CloseAll@" .. "󰅜 "
+    local closebutton = "%#BufflineCloseButton# %@CloseAll@" .. "󰱝 "
     local counter = 0
     for _, buf in pairs(vim.api.nvim_list_bufs()) do
         local filename = vim.api.nvim_buf_get_name(buf)
@@ -155,7 +155,7 @@ M.getTabline = function()
     else
         treespace = "%#BufflineTree#" .. string.rep(" ", treeWidth())
     end
-    return treespace .. buffstart .. buffline .. "%=" .. run .. split .. trans .. button .. closebutton
+    return treespace .. buffstart .. buffline .. "%=" .. run .. split .. trans .. themebutton .. closebutton
 end
 
 M.setup = function()
