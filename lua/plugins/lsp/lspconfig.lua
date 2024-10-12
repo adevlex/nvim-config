@@ -52,6 +52,7 @@ return
             "jsonls",
             "lemminx",
             "cmake",
+            "tailwindcss",
         }
 
         for _, k in ipairs(servers) do
