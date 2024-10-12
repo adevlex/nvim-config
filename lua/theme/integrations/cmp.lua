@@ -52,6 +52,7 @@ return {
     CmpItemKindValue = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
     CmpItemKindVariable = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
     CmpItemKindCodeium = { fg = colors.base0B, bg = utils.blend(colors.base0C, colors.darker, 0.4) },
+    CmpItemKindSupermaven = { fg = colors.base0B, bg = utils.blend(colors.base0C, colors.darker, 0.4) },
 
     -- Otros elementos del cmp
     CmpItemAbbr = { fg = colors.foreground },
