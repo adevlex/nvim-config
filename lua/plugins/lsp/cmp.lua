@@ -49,7 +49,7 @@ return {
             Unit = " 󰣺 ",
             Value = " 󱈄 ",
             Variable = " 󰡧 ",
-            Codeium = " 󱓑 ",
+            Supermaven = "  ",
         }
 
         cmp.setup({
@@ -134,8 +134,41 @@ return {
                         luasnip = "󰜷  [Snp]",
                         cmdline = "  [Cmd]",
                         nvim_lua = "  [Lua]",
-                        codeium = "󱎑  [Aic]",
+                        supermaven = "󱎑  [Aic]",
                     })[entry.source.name]
+
+                    local api = vim.api
+                    local cmp_ui = {
+                        icons_left = false,
+                        lspkind_text = true,
+                        format_colors = {
+                            tailwind = false,
+                            icon = "󱓻 ",
+                        }
+                    }
+
+                    local colors_icon = "󱓻 " .. " "
+
+                    local format_kk = function(entr, item)
+                        local entryItem = entr:get_completion_item()
+                        local color = entryItem.documentation
+
+                        if color and type(color) == "string" and color:match "^#%x%x%x%x%x%x$" then
+                            local hl = "hex-" .. color:sub(2)
+
+                            if #api.nvim_get_hl(0, { name = hl }) == 0 then
+                                api.nvim_set_hl(0, hl, { fg = color })
+                            end
+
+                            item.kind = cmp_ui.icons_left and colors_icon or " " .. colors_icon
+                            item.kind_hl_group = hl
+                            item.menu_hl_group = hl
+                        end
+                    end
+
+                    if cmp_ui.format_colors.tailwind then
+                        format_kk(entry, vim_item)
+                    end
                     return vim_item
                 end,
             },
@@ -149,7 +182,7 @@ return {
                 { name = "vsnip" },
                 { name = "luasnip" },
                 { name = "buffer" },
-                { name = "codeium" },
+                { name = "supermaven" },
             }),
         })
     end
