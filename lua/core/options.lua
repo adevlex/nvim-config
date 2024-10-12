@@ -57,8 +57,8 @@ g["loaded_ruby_provider"] = 0
 
 g.toggle_cmp = true
 g.code_action_menu_window_border = 'single'
-g.NvimTheme = "onenord"
+g.NvimTheme = "everforest"
 g.themeCache = vim.fn.stdpath "data" .. "/colors_data/"
 g.transparency = false
 g.loadNvimTheme = true
-g.statusStyle = 'fancy' -- fancy, minimal, blocks
+g.statusStyle = 'blocks' -- fancy, minimal, blocks
