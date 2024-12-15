@@ -125,7 +125,7 @@ end, {})
 
 -- preview mask
 vim.keymap.set("n", "<leader>fd", function()
-	require("custom.previewer_mask")({
+	require("core.previewer_mask")({
 		prompt_title = "Buscar Archivos",
 		layout_config = { preview_width = 0.6 },
 		hidden = true,
