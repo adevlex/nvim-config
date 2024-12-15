@@ -31,7 +31,7 @@ o.numberwidth = 2
 o.ruler = false
 
 -- disable nvim intro
-opt.shortmess:append "sI"
+opt.shortmess:append("sI")
 
 o.signcolumn = "yes"
 o.splitbelow = true
@@ -46,7 +46,7 @@ o.updatetime = 250
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
+opt.whichwrap:append("<>[]hl")
 --opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", lastline = " " }
 
 -- disable some default providers
@@ -56,9 +56,9 @@ g["loaded_perl_provider"] = 0
 g["loaded_ruby_provider"] = 0
 
 g.toggle_cmp = true
-g.code_action_menu_window_border = 'single'
-g.NvimTheme = "everforest"
-g.themeCache = vim.fn.stdpath "data" .. "/colors_data/"
-g.transparency = false
+g.code_action_menu_window_border = "single"
+g.NvimTheme = "catppuccin"
+g.themeCache = vim.fn.stdpath("data") .. "/colors_data/"
+g.transparency = true
 g.loadNvimTheme = true
-g.statusStyle = 'blocks' -- fancy, minimal, blocks
+g.statusStyle = "blocks" -- fancy, minimal, blocks
