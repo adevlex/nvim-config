@@ -85,27 +85,26 @@ local function createAutoCmd(bufnr)
 end
 
 function M.setup()
-    telescopePickers.new({
-        prompt_title = "  COLORSCHEMES",
-        layout_config = { height = 0.50, width = 0.50 },
-        finder = telescopeFinders.new_table({ results = themes }),
-        sorter = telescopeConfig.generic_sorter(),
-        attach_mappings = function(bufnr, map)
-            createAutoCmd(bufnr)
-            mapTelescopeActions(bufnr, map)
-            return true
-        end,
-    }):find()
+    telescopePickers
+        .new({
+            prompt_title = "  COLORSCHEMES",
+            layout_config = { height = 0.50, width = 0.50 },
+            finder = telescopeFinders.new_table({ results = themes }),
+            sorter = telescopeConfig.generic_sorter(),
+            attach_mappings = function(bufnr, map)
+                createAutoCmd(bufnr)
+                mapTelescopeActions(bufnr, map)
+
+                return true
+            end,
+        })
+        :find()
 end
 
 function M.toggleTransparency()
     vim.g.transparency = not vim.g.transparency
     reloadThemeModule()
-    utils.replaceword(
-        "vim.g.transparency",
-        tostring(not vim.g.transparency),
-        tostring(vim.g.transparency)
-    )
+    utils.replaceword("vim.g.transparency", tostring(not vim.g.transparency), tostring(vim.g.transparency))
 end
 
 function M.random()
@@ -115,4 +114,3 @@ function M.random()
 end
 
 return M
-
