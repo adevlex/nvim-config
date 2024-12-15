@@ -8,6 +8,65 @@ return
         if not ok then return end
 
         noice.setup({
+            cmdline = {
+                enabled = true,
+                view = "cmdline_popup", -- Vista de la línea de comandos
+                --@type table<string, string>
+                format = {
+                    cmdline = { pattern = "^:", icon = "", lang = "vim" },
+                    search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+                    search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+                    filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "", lang = "lua" },
+                    help = { pattern = "^:%s*he?l?p?%s+", icon = "" },
+                    input = { view = "cmdline_input", icon = "󰥻 " },
+                }
+            },
+
+            views = {
+                cmdline_popup = {
+                    position = {
+                        row = "50%", -- Centramos verticalmente
+                        col = "50%", -- Centramos horizontalmente
+                    },
+                    size = {
+                        width = 60,
+                        height = "auto",
+                    },
+                },
+
+                popup = {
+                    position = {
+                        row = "50%",
+                        col = "50%",
+                    },
+                    size = {
+                        width = 60,
+                        height = 10,
+                    },
+                    border = {
+                        style = "rounded",
+                        padding = { 1, 1 },
+                    },
+                },
+            },
+
+            routes = {
+                {
+                    filter = {
+                        event = 'msg_show',
+                        any = {
+                            { find = '%d+L, %d+B' },
+                            { find = '; after #%d+' },
+                            { find = '; before #%d+' },
+                            { find = '%d fewer lines' },
+                            { find = '%d more lines' },
+                        },
+                    },
+                    opts = { skip = true },
+                }
+            },
+
             lsp = {
                 progress = {
                     enabled = false,                   -- Deshabilita la barra de progreso de LSP
