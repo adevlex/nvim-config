@@ -1,130 +1,133 @@
 -- Definir la función ClickGit en el ámbito global
 function ClickGit()
-    ---@diagnostic disable-next-line: unused-local
-    local status_ok, toggleterm = pcall(require, "toggleterm")
-    if not status_ok then
-        vim.notify("toggleterm.nvim isn't installed!!!", vim.log.levels.ERROR)
-        return
-    end
+	---@diagnostic disable-next-line: unused-local
+	local status_ok, toggleterm = pcall(require, "toggleterm")
+	if not status_ok then
+		vim.notify("toggleterm.nvim isn't installed!!!", vim.log.levels.ERROR)
+		return
+	end
 
-    -- Verificar si estamos dentro de un repositorio git
-    local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1]
-    if is_git_repo ~= "true" then
-        vim.notify("Not inside a git repository. Initialize a git repository first.", vim.log.levels.ERROR)
-        return
-    end
+	-- Verificar si estamos dentro de un repositorio git
+	local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1]
+	if is_git_repo ~= "true" then
+		vim.notify("Not inside a git repository. Initialize a git repository first.", vim.log.levels.ERROR)
+		return
+	end
 
-    local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit = Terminal:new { cmd = "lazygit", direction = "float", hidden = true }
-    lazygit:toggle()
+	local Terminal = require("toggleterm.terminal").Terminal
+	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+	lazygit:toggle()
 end
 
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true, silent = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
--- local map = vim.keymap.set
-
+local map = vim.keymap.set
 vim.g.mapleader = " "
 
-map("n", "<C-a>", "gg<S-v>G")
-map("n", "<C-b>", "<cmd>lua require\'core.functions\'.build_run()<CR>")
--- Nvim-Tree
-map('n', '<C-n>', '<cmd>NvimTreeToggle<CR>')
+map("n", "<C-a>", "gg<S-v>G", { desc = "Select all" })
+map("n", "<C-b>", "<cmd>lua require'core.functions'.build_run()<CR>", { desc = "Build and run" })
+map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" })
+
 -- Debugger
-map('n', '<leader>dc', '<cmd>lua require\'dap\'.continue()<CR>')
-map('n', '<leader>do', '<cmd>lua require\'dap\'.step_over()<CR>')
-map('n', '<leader>di', '<cmd>lua require\'dap\'.step_into()<CR>')
-map('n', '<leader>du', '<cmd>lua require\'dap\'.step_out()<CR>')
-map('n', '<leader>db', '<cmd>lua require\'dap\'.toggle_breakpoint()<CR>')
-map('n', '<leader>dB', '<cmd>lua require\'dap\'.set_breakpoint(vim.fn.input(\'Breakpoint condition: \'))<CR>')
-map('n', '<leader>dd', '<cmd>lua require\'dapui\'.toggle()<CR>')
-map('n', '<leader>dl', '<cmd>lua require\'dap\'.run_last()<CR>')
+map("n", "<leader>dc", "<cmd>lua require'dap'.continue()<CR>", { desc = "Continue" })
+map("n", "<leader>do", "<cmd>lua require'dap'.step_over()<CR>", { desc = "Step over" })
+map("n", "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Step into" })
+map("n", "<leader>du", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Step out" })
+map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" })
+map(
+	"n",
+	"<leader>dB",
+	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+	{ desc = "Set breakpoint" }
+)
+map("n", "<leader>dd", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "Toggle debugger UI" })
+map("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Run last" })
 
 -- Find
-map('n', '<leader>fa', '<cmd>Telescope autocommands<CR>')
-map('n', '<leader>ff', '<cmd>Telescope find_files<CR>')
-map('n', '<leader>fs', '<cmd>Telescope persisted<CR>')
-map('n', '<leader>fm', '<cmd>Telescope marks<CR>')
-map('n', '<leader>fM', '<cmd>Telescope man_pages<CR>')
-map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>')
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>')
-map('n', '<leader>fn', '<cmd>lua require(\'telescope\').extensions.notify.notify()<CR>')
-map('n', '<leader>fp', '<cmd>Telescope projects<CR>')
-map('n', '<leader>fh', '<cmd>Telescope help_tags<CR>')
-map('n', '<leader>fk', '<cmd>Telescope keymaps<CR>')
-map('n', '<leader>fC', '<cmd>Telescope commands<CR>')
-map('n', '<leader>fr', '<cmd>Telescope oldfiles<CR>')
-map('n', '<leader>fH', '<cmd>Telescope highlights<CR>')
+map("n", "<leader>fa", "<cmd>Telescope autocommands<CR>", { desc = "Autocommands" })
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+map("n", "<leader>fs", "<cmd>Telescope persisted<CR>", { desc = "Persisted" })
+map("n", "<leader>fm", "<cmd>Telescope marks<CR>", { desc = "Marks" })
+map("n", "<leader>fM", "<cmd>Telescope man_pages<CR>", { desc = "Man pages" })
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Live grep" })
+map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Buffers" })
+map("n", "<leader>fn", "<cmd>lua require('telescope').extensions.notify.notify()<CR>", { desc = "Notifications" })
+map("n", "<leader>fp", "<cmd>Telescope projects<CR>", { desc = "Projects" })
+map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Help tags" })
+map("n", "<leader>fk", "<cmd>Telescope keymaps<CR>", { desc = "Keymaps" })
+map("n", "<leader>fC", "<cmd>Telescope commands<CR>", { desc = "Commands" })
+map("n", "<leader>fr", "<cmd>Telescope oldfiles<CR>", { desc = "Old files" })
+map("n", "<leader>fH", "<cmd>Telescope highlights<CR>", { desc = "Highlights" })
 
 -- Git
-map('n', '<leader>go', '<cmd>Telescope git_status<CR>')
-map('n', '<leader>gb', '<cmd>Telescope git_branches<CR>')
-map('n', '<leader>gc', '<cmd>Telescope git_commits<CR>')
-map('n', '<leader>gg', ':lua ClickGit()<CR>')
-map('n', '<leader>gj', '<cmd>lua require\'gitsigns\'.next_hunk()<CR>')
-map('n', '<leader>gk', '<cmd>lua require\'gitsigns\'.prev_hunk()<CR>')
-map('n', '<leader>gl', '<cmd>lua require\'gitsigns\'.blame_line()<CR>')
-map('n', '<leader>gp', '<cmd>lua require\'gitsigns\'.preview_hunk()<CR>')
-map('n', '<leader>gr', '<cmd>lua require\'gitsigns\'.reset_hunk()<CR>')
-map('n', '<leader>gR', '<cmd>lua require\'gitsigns\'.reset_buffer()<CR>')
-map('n', '<leader>gs', '<cmd>lua require\'gitsigns\'.stage_hunk()<CR>')
-map('n', '<leader>gu', '<cmd>lua require\'gitsigns\'.undo_stage_hunk()<CR>')
-map('n', '<leader>gd',
-    ':lua if next(require("diffview.lib").views) == nil then vim.cmd("DiffviewOpen") else vim.cmd("DiffviewClose") end<CR>')
+map("n", "<leader>go", "<cmd>Telescope git_status<CR>", { desc = "Git status" })
+map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Git branches" })
+map("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", { desc = "Git commits" })
+map("n", "<leader>gg", ":lua ClickGit()<CR>", { desc = "Git commit" })
+map("n", "<leader>gj", "<cmd>lua require'gitsigns'.next_hunk()<CR>", { desc = "Next hunk" })
+map("n", "<leader>gk", "<cmd>lua require'gitsigns'.prev_hunk()<CR>", { desc = "Prev hunk" })
+map("n", "<leader>gl", "<cmd>lua require'gitsigns'.blame_line()<CR>", { desc = "Blame line" })
+map("n", "<leader>gp", "<cmd>lua require'gitsigns'.preview_hunk()<CR>", { desc = "Preview hunk" })
+map("n", "<leader>gr", "<cmd>lua require'gitsigns'.reset_hunk()<CR>", { desc = "Reset hunk" })
+map("n", "<leader>gR", "<cmd>lua require'gitsigns'.reset_buffer()<CR>", { desc = "Reset buffer" })
+map("n", "<leader>gs", "<cmd>lua require'gitsigns'.stage_hunk()<CR>", { desc = "Stage hunk" })
+map("n", "<leader>gu", "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>", { desc = "Undo stage hunk" })
+map(
+	"n",
+	"<leader>gd",
+	":lua if next(require('diffview.lib').views) == nil then vim.cmd('DiffviewOpen') else vim.cmd('DiffviewClose') end<CR>",
+	{ desc = "Diff" }
+)
 
 -- LSP
-map('n', '<leader>lk', '<cmd>Lspsaga hover_doc<CR>')
-map('n', '<leader>le', '<cmd>Lspsaga diagnostic_jump_next<CR>')
-map('n', '<leader>la', '<cmd>Lspsaga code_action<CR>')
-map('n', '<leader>lo', '<cmd>Lspsaga outline<CR>')
-map('n', '<leader>lI', '<cmd>Lspsaga incoming_calls<CR>')
-map('n', '<leader>lO', '<cmd>Lspsaga outgoing_calls<CR>')
-map('n', '<leader>lr', '<cmd>Lspsaga rename<CR>')
-map('n', '<leader>li', '<cmd>LspInfo<CR>')
-
--- Neovim
----@diagnostic disable-next-line: unused-local
-local config_dir = { vim.fn.stdpath("config") .. "/" }
-map('n', '<leader>nf',
-    ':lua require("telescope.builtin").find_files{prompt_title="Config Files", search_dirs=config_dir, cwd=vim.fn.stdpath("config").."/"}<CR>')
-map('n', '<leader>ng',
-    ':lua require("telescope.builtin").live_grep{prompt_title="Config Files", search_dirs=config_dir, cwd=vim.fn.stdpath("config").."/"}<CR>')
-map('n', '<leader>ni',
-    ':lua if vim.fn.has("nvim-0.9.0") == 1 then vim.cmd("Inspect") else vim.notify("Inspect isn\'t available in this Neovim version", vim.log.levels.WARN, {title="Inspect"}) end<CR>')
-map('n', '<leader>nm', '<cmd>messages<CR>')
-map('n', '<leader>nh', '<cmd>checkhealth<CR>')
-map('n', '<leader>nv',
-    ':lua local version = vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch vim.notify(version, vim.log.levels.INFO, {title="Neovim Version"})<CR>')
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
+map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
+map("n", "<leader>sh", vim.lsp.buf.signature_help, { desc = "Signature help" })
+map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
+map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+map("n", "<leader>wl", function()
+	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+end, { desc = "List workspace folders" })
+map("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
+map("n", "<leader>ra", function()
+	require("core.renamer")()
+end, { desc = "NvRenamer" })
+map("n", "gr", vim.lsp.buf.references, { desc = "Show references" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 
 -- Plugins
-map('n', '<leader>pc', '<cmd>Lazy clean<CR>')
-map('n', '<leader>pC', '<cmd>Lazy check<CR>')
-map('n', '<leader>pd', '<cmd>Lazy debug<CR>')
-map('n', '<leader>pi', '<cmd>Lazy install<CR>')
-map('n', '<leader>ps', '<cmd>Lazy sync<CR>')
-map('n', '<leader>pl', '<cmd>Lazy log<CR>')
-map('n', '<leader>ph', '<cmd>Lazy home<CR>')
-map('n', '<leader>pH', '<cmd>Lazy help<CR>')
-map('n', '<leader>pp', '<cmd>Lazy profile<CR>')
-map('n', '<leader>pu', '<cmd>Lazy update<CR>')
+map("n", "<leader>pc", ":Lazy clean<CR>", { desc = "Clean" })
+map("n", "<leader>pC", ":Lazy check<CR>", { desc = "Check" })
+map("n", "<leader>pd", ":Lazy debug<CR>", { desc = "Debug" })
+map("n", "<leader>pi", ":Lazy install<CR>", { desc = "Install" })
+map("n", "<leader>ps", ":Lazy sync<CR>", { desc = "Sync" })
+map("n", "<leader>pl", ":Lazy log<CR>", { desc = "Log" })
+map("n", "<leader>ph", ":Lazy home<CR>", { desc = "Home" })
+map("n", "<leader>pH", ":Lazy help<CR>", { desc = "Help" })
+map("n", "<leader>pp", ":Lazy profile<CR>", { desc = "Profile" })
+map("n", "<leader>pu", ":Lazy update<CR>", { desc = "Update" })
 
 -- Terminal
-map('n', '<leader>tf', '<cmd>ToggleTerm direction=float<CR>')
-map('n', '<leader>th', '<cmd>ToggleTerm direction=horizontal<CR>')
-map('n', '<leader>tv', '<cmd>ToggleTerm direction=vertical<CR>')
+map("n", "<leader>tf", ":ToggleTerm direction=float<CR>", { desc = "Float" })
+map("n", "<leader>th", ":ToggleTerm direction=horizontal<CR>", { desc = "Horizontal" })
+map("n", "<leader>tv", ":ToggleTerm direction=vertical<CR>", { desc = "Vertical" })
+map("n", "<leader>tl", ":ToggleTerm<CR>", { desc = "Toggle" })
 
 -- Minty
 -- Definir el keymap para activar minty.huefy y minty.shades
 map("n", "<leader>mh", ":lua require('minty.huefy').open()<CR>", { noremap = true, silent = true })
 map("n", "<leader>ms", ":lua require('minty.shades').open()<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<RightMouse>", function()
-    vim.cmd.exec '"normal! \\<RightMouse>"'
+	vim.cmd.exec('"normal! \\<RightMouse>"')
 
-    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-    require("menu").open(options, { mouse = true })
+	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+	require("menu").open(options, { mouse = true })
 end, {})
+
+-- preview mask
+vim.keymap.set("n", "<leader>fd", function()
+	require("custom.previewer_mask")({
+		prompt_title = "Buscar Archivos",
+		layout_config = { preview_width = 0.6 },
+		hidden = true,
+	})
+end, { noremap = true, silent = true, desc = "Buscar archivos (con datos privados enmascarados)" })
