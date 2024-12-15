@@ -1,5 +1,4 @@
-require 'ui'
-require 'core'
-require 'plugins'
-require 'theme'.loadThemes()
-require 'colorify'.run()
+require("ui")
+require("core")
+require("plugins")
+require("colorify").run()
