@@ -6,6 +6,8 @@ if not colors then
 end
 
 return {
+    StalineVenvIcon = { bg = colors.base0B, fg = colors.base00 },
+    StalineVenvName = { bg = colors.base00, fg = colors.base0B },
     StalineFolderIcon = { bg = colors.red, fg = colors.base00 },
     StalineFolderSep = { bg = colors.base00, fg = colors.red },
     --StalineFolderText = { bg = colors.cursorline, fg = colors.color1 },

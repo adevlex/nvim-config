@@ -7,7 +7,7 @@ end
 
 return {
     ["@variable"] = { fg = colors.base09 },
-    ["@variable.builtin"] = { fg = colors.base09 },
+    ["@variable.builtin"] = { fg = colors.base09, bold = true },
     ["@variable.parameter"] = { fg = colors.base08, italic = true },
     ["@variable.member"] = { fg = colors.base08 },
     ["@variable.member.key"] = { fg = colors.base08 },
@@ -16,15 +16,15 @@ return {
     -- ["@module.builtin"] = { fg = colors.base08 },
 
     ["@constant"] = { fg = colors.base08, bold = true },
-    ["@constant.builtin"] = { fg = colors.base09 },
-    ["@constant.macro"] = { fg = colors.base08 },
+    ["@constant.builtin"] = { fg = colors.base09, bold = true },
+    ["@constant.macro"] = { fg = colors.base08, bold = true },
 
     ["@string"] = { fg = colors.base0B },
     ["@string.regex"] = { fg = colors.base0C },
 
     ["@string.escape"] = { fg = colors.base0C },
     ["@character"] = { fg = colors.base08 },
-    -- ["@character.special"] = { fg = colors.base08 },
+    ["@character.special"] = { fg = colors.base08 },
     ["@number"] = { fg = colors.base09 },
     ["@number.float"] = { fg = colors.base09 },
 
@@ -33,16 +33,16 @@ return {
     ["@error"] = { fg = colors.base08 },
 
     ["@keyword.exception"] = { fg = colors.base08 },
-    ["@keyword"] = { fg = colors.base0E, italic = true },
+    ["@keyword"] = { fg = colors.base0E, italic = true, bold = true },
     ["@keyword.function"] = { fg = colors.base0E },
     ["@keyword.return"] = { fg = colors.base0E },
-    ["@keyword.operator"] = { fg = colors.base0E },
+    ["@keyword.operator"] = { fg = colors.base0E, bold = true },
     ["@keyword.import"] = { link = "Include" },
     ["@keyword.conditional"] = { fg = colors.base0E },
     ["@keyword.conditional.ternary"] = { fg = colors.base0E },
     ["@keyword.repeat"] = { fg = colors.base0A },
     ["@keyword.storage"] = { fg = colors.base0A },
-    ["@keyword.directive.define"] = { fg = colors.base0E },
+    ["@keyword.directive.define"] = { fg = colors.base0E, bold = true },
     ["@keyword.directive"] = { fg = colors.base0A },
 
     ["@function"] = { fg = colors.base0D, bold = true },
@@ -82,7 +82,7 @@ return {
     ["@markup.strikethrough"] = { strikethrough = true },
     ["@markup.quote"] = { bg = colors.base00 },
 
-    ["@comment"] = { fg = colors.base04, italic = true },
+    ["@comment"] = { fg = colors.base05, italic = true },
     ["@comment.todo"] = { fg = colors.base00, bg = colors.base07 },
     ["@comment.warning"] = { fg = colors.base00, bg = colors.base09 },
     ["@comment.note"] = { fg = colors.base00, bg = colors.blue },

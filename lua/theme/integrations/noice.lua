@@ -6,11 +6,11 @@ if not colors then
 end
 
 return {
-    NoiceMini = { bg = colors.darker },
-    NoiceCmdlinePopup = { bg = colors.darker },
-    NoiceCmdlinePopupBorder = { bg = colors.darker, fg = colors.darker },
+    NoiceMini = { bg = colors.darker, fg = colors.foreground },
+    NoiceCmdlinePopup = { bg = colors.darker, fg = colors.foreground },
+    NoiceCmdlinePopupBorder = { bg = colors.darker, fg = colors.base04 },
     NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
-    NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.darker },
+    NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.base0D },
     NoiceLspProgressSpinner = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
 
     -- Notify
