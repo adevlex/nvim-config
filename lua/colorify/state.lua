@@ -1,6 +1,6 @@
 local M = {
-    events = {},
-    ns = nil,
+	events = {},
+	ns = 1,
 }
 
 return M
