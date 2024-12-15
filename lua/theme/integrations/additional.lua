@@ -6,13 +6,16 @@ if not colors then
 end
 
 return {
+    Added = { fg = colors.base0B },
+    Removed = { fg = colors.base08 },
+    Changed = { fg = colors.base0D },
     Normal = { fg = colors.foreground, bg = colors.background },
-    NormalFloat = { bg = colors.darker },
-    FloatBorder = { fg = colors.darker },
+    NormalFloat = { bg = colors.background },
+    FloatBorder = { fg = colors.base04 },
     FloatTitle = { fg = colors.foreground, bg = colors.background, bold = true },
     WinSeparator = { fg = colors.background },
-    WinBar = { link = "Normal" },
-    WinBarNC = { link = "Normal" },
+    WinBar = { bg = "NONE" },
+    WinBarNC = { bg = "NONE" },
 
     WildMenu = { fg = colors.base08, bg = colors.base0A },
     Comment = { fg = colors.base04, italic = true },
