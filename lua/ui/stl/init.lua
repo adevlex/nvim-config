@@ -7,6 +7,7 @@ local run = function(STYLE)
     local position = require("ui.stl.modules.position")
     local diagnostics = require("ui.stl.modules.diagnostics")
     local lsp = require("ui.stl.modules.lsp")
+    local venv = require("ui.stl.modules.venv")
     return table.concat {
         mode(STYLE),
         filename(STYLE),
@@ -15,6 +16,7 @@ local run = function(STYLE)
         "%=",
         diagnostics(STYLE),
         folder(STYLE),
+        venv(STYLE),
         lsp(STYLE) or "",
         position(STYLE),
     };
@@ -30,4 +32,3 @@ local setup = function(STYLE)
 end
 
 return { run = run, setup = setup }
-
