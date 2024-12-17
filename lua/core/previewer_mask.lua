@@ -61,9 +61,10 @@ local function load_and_mask_file(filepath)
 end
 
 local function masked_previewer(opts)
+	opts = opts or {}
 	return previewers.new_buffer_previewer({
 		title = "Masked Previewer",
-		define_preview = function(self, entry, status)
+		define_preview = function(self, entry)
 			local filepath = entry.path
 			local lines = load_and_mask_file(filepath)
 
