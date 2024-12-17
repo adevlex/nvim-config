@@ -116,7 +116,7 @@ map("n", "<leader>tl", ":ToggleTerm<CR>", { desc = "Toggle" })
 -- Definir el keymap para activar minty.huefy y minty.shades
 map("n", "<leader>mh", ":lua require('minty.huefy').open()<CR>", { noremap = true, silent = true })
 map("n", "<leader>ms", ":lua require('minty.shades').open()<CR>", { noremap = true, silent = true })
-vim.keymap.set("n", "<RightMouse>", function()
+map("n", "<RightMouse>", function()
 	vim.cmd.exec('"normal! \\<RightMouse>"')
 
 	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
@@ -124,8 +124,8 @@ vim.keymap.set("n", "<RightMouse>", function()
 end, {})
 
 -- preview mask
-vim.keymap.set("n", "<leader>fd", function()
-	require("core.previewer_mask")({
+map("n", "<leader>fd", function()
+	require("core.previewer_mask").masked_search({
 		prompt_title = "Buscar Archivos",
 		layout_config = { preview_width = 0.6 },
 		hidden = true,
