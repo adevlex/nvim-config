@@ -57,8 +57,8 @@ g["loaded_ruby_provider"] = 0
 
 g.toggle_cmp = true
 g.code_action_menu_window_border = "single"
-g.NvimTheme = "catppuccin"
+g.NvimTheme = "onedark"
 g.themeCache = vim.fn.stdpath("data") .. "/colors_data/"
-g.transparency = true
+g.transparency = false
 g.loadNvimTheme = true
 g.statusStyle = "blocks" -- fancy, minimal, blocks
