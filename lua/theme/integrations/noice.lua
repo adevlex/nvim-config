@@ -8,9 +8,13 @@ end
 return {
     NoiceMini = { bg = colors.darker, fg = colors.foreground },
     NoiceCmdlinePopup = { bg = colors.darker, fg = colors.foreground },
-    NoiceCmdlinePopupBorder = { bg = colors.darker, fg = colors.base04 },
+    NoiceCmdlinePopupBorder = { bg = "NONE", fg = colors.darker },
     NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
-    NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.base0D },
+    NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.red, bold = true },
+    NoiceCmdlinePopupTitleCmdline = { bg = colors.darker, fg = colors.green, bold = true },
+    NoiceCmdlinePopupTitleHelp = { bg = colors.darker, fg = colors.blue, bold = true },
+    NoiceCmdlinePopupTitleSearch = { bg = colors.darker, fg = colors.blue, bold = true },
+    NoiceCmdlinePopupTitleFilter = { bg = colors.darker, fg = colors.base0A, bold = true },
     NoiceLspProgressSpinner = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
 
     -- Notify

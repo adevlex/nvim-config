@@ -57,7 +57,7 @@ return {
     CmpItemMenu = { fg = colors.base0C },
     CmpDoc = { bg = colors.lighter },
     Pmenu = { fg = colors.base05, bg = colors.darker },
-    CmpBorder = { fg = colors.base04, bg = "NONE" },
+    CmpBorder = { fg = colors.darker, bg = colors.darker },
     PmenuSel = { bg = utils.blend(colors.base0D, colors.darker, 0.4) },
     PmenuSbar = { bg = colors.darker },
     PmenuThumb = { bg = colors.base0B },

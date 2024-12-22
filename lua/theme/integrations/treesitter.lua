@@ -25,8 +25,10 @@ return {
     ["@string.escape"] = { fg = colors.base0C },
     ["@character"] = { fg = colors.base08 },
     ["@character.special"] = { fg = colors.base08 },
-    ["@number"] = { fg = colors.base09 },
-    ["@number.float"] = { fg = colors.base09 },
+    ["@number"] = { fg = colors.base0C },
+    ["@number.float"] = { fg = colors.base0C },
+    ["@boolean"] = { fg = colors.base0A, bold = true },
+    ["@parameter"] = { fg = colors.base08, italic = true },
 
     ["@annotation"] = { fg = colors.base0F },
     ["@attribute"] = { fg = colors.base0A },
@@ -34,8 +36,8 @@ return {
 
     ["@keyword.exception"] = { fg = colors.base08 },
     ["@keyword"] = { fg = colors.base0E, italic = true, bold = true },
-    ["@keyword.function"] = { fg = colors.base0E },
-    ["@keyword.return"] = { fg = colors.base0E },
+    ["@keyword.function"] = { fg = colors.base0E, bold = true, italic = true },
+    ["@keyword.return"] = { fg = colors.base0E, bold = true, italic = true },
     ["@keyword.operator"] = { fg = colors.base0E, bold = true },
     ["@keyword.import"] = { link = "Include" },
     ["@keyword.conditional"] = { fg = colors.base0E },
@@ -53,7 +55,7 @@ return {
     ["@function.method.call"] = { fg = colors.base0D, bold = true },
     ["@constructor"] = { fg = colors.base0C, bold = true },
 
-    ["@operator"] = { fg = colors.base05 },
+    ["@operator"] = { fg = colors.base0D },
     ["@reference"] = { fg = colors.base05 },
     ["@punctuation.bracket"] = { fg = colors.base0F },
     ["@punctuation.delimiter"] = { fg = colors.base0F },
