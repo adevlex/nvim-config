@@ -10,7 +10,6 @@ return {
         M.on_attach = function(client, _)
             client.server_capabilities.documentFormattingProvider = true
             client.server_capabilities.documentRangeFormattingProvider = true
-            client.server_capabilities.semanticTokensProvider = nil
         end
 
         M.capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -62,16 +61,15 @@ return {
         local function custom_open_floating_preview(contents, syntax, opts, ...)
             ---@type FloatingPreviewOpts
             opts = opts or {}
-            opts.border = "rounded"
+            opts.border = "solid"
 
             -- Agregar padding al contenido
-            table.insert(contents, 1, "")          -- Línea en blanco al principio
-            table.insert(contents, "")             -- Línea en blanco al final
+            table.insert(contents, 1, " ")
+            table.insert(contents, " ")
             for i, line in ipairs(contents) do
-                contents[i] = "  " .. line .. "  " -- Añadir espacios al inicio y al final
+                contents[i] = "  " .. line .. "  "
             end
 
-            -- Llamar a la función original con las opciones modificadas
             return orig_util_open_floating_preview(contents, syntax, opts, ...)
         end
 
