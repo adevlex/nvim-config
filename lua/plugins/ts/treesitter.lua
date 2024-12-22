@@ -5,7 +5,7 @@ return
     cmd = { 'TSInstall', 'TSBufEnable', 'TSBufDisable', 'TSModuleInfo' },
     config = function()
         require('nvim-treesitter.configs').setup({
-            ensure_installed = { 'python', 'javascript', 'lua', 'latex' },
+            ensure_installed = { 'python', 'javascript', 'lua' },
             sync_install = false,
             auto_install = true,
             highlight = {
