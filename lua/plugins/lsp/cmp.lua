@@ -1,3 +1,5 @@
+---NOTE: Cmp configuration
+
 return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
@@ -50,6 +52,8 @@ return {
             Value = " 󰠡 ", -- Valores
             Variable = " 󰡦 ", -- Variables
             Supermaven = " 󰗚 ", -- Icono especial para personalización
+            Codeium = " 󰌗 ", -- Codeium
+            Copilot = " 󰌗 ", -- Copilot
         }
 
         cmp.setup({
@@ -97,17 +101,14 @@ return {
 
             formatting = {
                 fields = { "kind", "abbr", "menu" },
-                format = function(entry, vim_item)
-                    vim_item.kind = kind_icons[vim_item.kind]
-                    vim_item.menu = ({
-                        buffer = "󰈔  Buf",
-                        path = "󰉖  Pat",
-                        nvim_lsp = "󰒕  Lsp",
-                        luasnip = "󰜷  Snp",
-                        cmdline = "  Cmd",
-                        nvim_lua = "  Lua",
-                        supermaven = "󱎑  Aic",
-                    })[entry.source.name]
+                format = function(entry, item)
+                    local icons = kind_icons
+                    local icon = icons[item.kind] or ""
+                    local kind = item.kind or ""
+
+                    item.menu = string.format("%-8s", kind)
+                    item.menu_hl_group = "CmpItemKind" .. kind
+                    item.kind = icon
 
                     local api = vim.api
                     local cmp_ui = {
@@ -121,7 +122,7 @@ return {
 
                     local colors_icon = "󱓻 " .. " "
 
-                    local format_kk = function(entr, item)
+                    local format_kk = function(entr, ite)
                         local entryItem = entr:get_completion_item()
                         local color = entryItem.documentation
 
@@ -132,16 +133,16 @@ return {
                                 api.nvim_set_hl(0, hl, { fg = color })
                             end
 
-                            item.kind = cmp_ui.icons_left and colors_icon or " " .. colors_icon
-                            item.kind_hl_group = hl
-                            item.menu_hl_group = hl
+                            ite.kind = cmp_ui.icons_left and colors_icon or " " .. colors_icon
+                            ite.kind_hl_group = hl
+                            ite.menu_hl_group = hl
                         end
                     end
 
                     if cmp_ui.format_colors.tailwind then
-                        format_kk(entry, vim_item)
+                        format_kk(entry, item)
                     end
-                    return vim_item
+                    return item
                 end,
             },
 
@@ -155,6 +156,8 @@ return {
                 { name = "luasnip" },
                 { name = "buffer" },
                 { name = "supermaven" },
+                { name = "copilot" },
+                { name = "codeium" },
             }),
         })
     end,
