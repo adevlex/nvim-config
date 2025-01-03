@@ -1,35 +1,33 @@
-local colors = require("theme").getDefaultTheme()
+local theme = require("theme").get_theme_tb("base16_palette")
 
-if not colors then
-  return { error = "colors not found" }
-end
-
-return {
-  Boolean = { fg = colors.base09, bold = true },
-  Character = { fg = colors.base08, italic = true, bold = true },
-  Conditional = { fg = colors.base0E },
-  Constant = { fg = colors.base08, bold = true },
-  Define = { fg = colors.base0E },
-  Delimiter = { fg = colors.base0F },
-  Float = { fg = colors.base09 },
-  Variable = { fg = colors.base05, italic = true },
-  Function = { fg = colors.base0D, bold = true },
-  Identifier = { fg = colors.base08 },
-  Include = { fg = colors.base0D, bold = true },
-  Keyword = { fg = colors.base0E, bold = true, italic = true },
-  Label = { fg = colors.base0A, bold = true },
-  Number = { fg = colors.base09, bold = true },
-  Operator = { fg = colors.base05, bold = true },
-  PreProc = { fg = colors.base0A, italic = true },
-  Repeat = { fg = colors.base0A, bold = true },
-  Special = { fg = colors.base0C },
-  SpecialChar = { fg = colors.base0F },
-  Statement = { fg = colors.base08, bold = true },
-  StorageClass = { fg = colors.base0A, bold = true },
-  String = { fg = colors.base0B, italic = true },
-  Structure = { fg = colors.base0E, bold = true },
-  Tag = { fg = colors.base0A, bold = true },
-  Todo = { fg = colors.base01, bg = colors.base0A, bold = true },
-  Type = { fg = colors.base0A, bold = true },
-  Typedef = { fg = colors.base0A, italic = true },
+local syntax = {
+	Boolean = { fg = theme.base09 },
+	Character = { fg = theme.base08 },
+	Conditional = { fg = theme.base0E },
+	Constant = { fg = theme.base08 },
+	Define = { fg = theme.base0E, sp = "none" },
+	Delimiter = { fg = theme.base0F },
+	Float = { fg = theme.base09 },
+	Variable = { fg = theme.base05 },
+	Function = { fg = theme.base0D },
+	Identifier = { fg = theme.base08, sp = "none" },
+	Include = { fg = theme.base0D },
+	Keyword = { fg = theme.base0E },
+	Label = { fg = theme.base0A },
+	Number = { fg = theme.base09 },
+	Operator = { fg = theme.base05, sp = "none" },
+	PreProc = { fg = theme.base0A },
+	Repeat = { fg = theme.base0A },
+	Special = { fg = theme.base0C },
+	SpecialChar = { fg = theme.base0F },
+	Statement = { fg = theme.base08 },
+	StorageClass = { fg = theme.base0A },
+	String = { fg = theme.base0B },
+	Structure = { fg = theme.base0E },
+	Tag = { fg = theme.base0A },
+	Todo = { fg = theme.base0A, bg = theme.base01 },
+	Type = { fg = theme.base0A, sp = "none" },
+	Typedef = { fg = theme.base0A },
 }
+
+return syntax

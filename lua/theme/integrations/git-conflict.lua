@@ -1,0 +1,11 @@
+local colors = require("theme").get_theme_tb("main_colors")
+local mix_col = require("theme.colors").mix
+
+-- Need to manually re-configure git-conflict.nvim to use these highlight groups.
+-- See: https://github.com/akinsho/git-conflict.nvim?tab=readme-ov-file#configuration
+local highligths = {
+	GitConflictDiffAdd = { bg = mix_col(colors.blue, colors.black, 85) },
+	GitConflictDiffText = { bg = mix_col(colors.green, colors.black, 85) },
+}
+
+return highligths

@@ -1,64 +1,130 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
+local base16 = require("theme").get_theme_tb("base16_palette")
+local colors = require("theme").get_theme_tb("main_colors")
+local mixcolors = require("theme.colors").mix
 
-if not colors then
-  return { error = "colors not found" }
-end
--- Generar background con transparencia usando 'blend'
-local function createAlphaBg(foreground, alpha)
-  return utils.blend(foreground, colors.background, alpha)
-end
-
-return {
-  -- Aquí utilizo 'foreground' sólido y 'background' con alpha para el contraste
-  CmpItemKindArray = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
-  CmpItemKindBoolean = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
-  CmpItemKindClass = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
-  CmpItemKindColor = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindConstant = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
-  CmpItemKindConstructor = { fg = colors.base05, bg = createAlphaBg(colors.base05, 0.2) },
-  CmpItemKindEnum = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
-  CmpItemKindEnumMember = { fg = colors.base08, bg = createAlphaBg(colors.base08, 0.2) },
-  CmpItemKindEvent = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindField = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
-  CmpItemKindFile = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
-  CmpItemKindFolder = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindFunction = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
-  CmpItemKindInterface = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
-  CmpItemKindKey = { fg = colors.red, bg = createAlphaBg(colors.red, 0.2) },
-  CmpItemKindKeyword = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
-  CmpItemKindMethod = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
-  CmpItemKindModule = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
-  CmpItemKindNamespace = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindNull = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
-  CmpItemKindNumber = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindObject = { fg = colors.base09, bg = createAlphaBg(colors.base09, 0.2) },
-  CmpItemKindOperator = { fg = colors.base08, bg = createAlphaBg(colors.base08, 0.2) },
-  CmpItemKindPackage = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
-  CmpItemKindProperty = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
-  CmpItemKindReference = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
-  CmpItemKindSnippet = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindString = { fg = colors.base0C, bg = createAlphaBg(colors.base0C, 0.2) },
-  CmpItemKindStruct = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
-  CmpItemKindText = { fg = colors.base0F, bg = createAlphaBg(colors.base0F, 0.2) },
-  CmpItemKindTypeParameter = { fg = colors.base0B, bg = createAlphaBg(colors.base0B, 0.2) },
-  CmpItemKindUnit = { fg = colors.base0A, bg = createAlphaBg(colors.base0A, 0.2) },
-  CmpItemKindValue = { fg = colors.base0D, bg = createAlphaBg(colors.base0D, 0.2) },
-  CmpItemKindVariable = { fg = colors.base0E, bg = createAlphaBg(colors.base0E, 0.2) },
-  CmpItemKindCodeium = { fg = colors.base0B, bg = utils.blend(colors.base0C, colors.darker, 0.4) },
-  CmpItemKindSupermaven = { fg = colors.base0B, bg = utils.blend(colors.base0C, colors.darker, 0.4) },
-
-  -- Otros elementos del cmp
-  CmpItemAbbr = { fg = colors.foreground },
-  CmpItemAbbrDeprecated = { fg = colors.base09 },
-  CmpItemAbbrMatch = { fg = colors.base0B },
-  CmpItemAbbrMatchFuzzy = { fg = colors.base08 },
-  CmpItemKind = { fg = colors.foreground },
-  CmpItemMenu = { fg = colors.base0C },
-  CmpDoc = { bg = colors.lighter },
-  Pmenu = { fg = colors.base05, bg = colors.darker },
-  CmpBorder = { fg = colors.darker, bg = colors.darker },
-  PmenuSel = { bg = utils.blend(colors.base0D, colors.darker, 0.4) },
-  PmenuSbar = { bg = colors.darker },
-  PmenuThumb = { bg = colors.base0B },
+local highlights = {
+	CmpItemAbbr = { fg = colors.white },
+	CmpItemAbbrMatch = { fg = colors.blue, bold = true },
+	CmpDoc = { bg = colors.black },
+	CmpDocBorder = { fg = colors.one_bg },
+	CmpPmenu = { bg = colors.black },
+	CmpSel = { link = "PmenuSel", bold = true },
 }
+
+local item_kinds = {
+	-- cmp item kinds
+	CmpItemKindConstant = { fg = base16.base09 },
+	CmpItemKindFunction = { fg = base16.base0D },
+	CmpItemKindIdentifier = { fg = base16.base08 },
+	CmpItemKindField = { fg = base16.base08 },
+	CmpItemKindVariable = { fg = base16.base0E },
+	CmpItemKindSnippet = { fg = colors.red },
+	CmpItemKindText = { fg = base16.base0B },
+	CmpItemKindStructure = { fg = base16.base0E },
+	CmpItemKindType = { fg = base16.base0A },
+	CmpItemKindKeyword = { fg = base16.base07 },
+	CmpItemKindMethod = { fg = base16.base0D },
+	CmpItemKindConstructor = { fg = colors.blue },
+	CmpItemKindFolder = { fg = base16.base07 },
+	CmpItemKindModule = { fg = base16.base0A },
+	CmpItemKindProperty = { fg = base16.base08 },
+	CmpItemKindEnum = { fg = colors.blue },
+	CmpItemKindUnit = { fg = base16.base0E },
+	CmpItemKindClass = { fg = colors.teal },
+	CmpItemKindFile = { fg = base16.base07 },
+	CmpItemKindInterface = { fg = colors.green },
+	CmpItemKindColor = { fg = colors.white },
+	CmpItemKindReference = { fg = base16.base05 },
+	CmpItemKindEnumMember = { fg = colors.purple },
+	CmpItemKindStruct = { fg = base16.base0E },
+	CmpItemKindValue = { fg = colors.cyan },
+	CmpItemKindEvent = { fg = colors.yellow },
+	CmpItemKindOperator = { fg = base16.base05 },
+	CmpItemKindTypeParameter = { fg = base16.base08 },
+	CmpItemKindCopilot = { fg = colors.green },
+	CmpItemKindCodeium = { fg = colors.vibrant_green },
+	CmpItemKindTabNine = { fg = colors.baby_pink },
+	CmpItemKindSuperMaven = { fg = colors.yellow },
+}
+
+local cmp_ui = {
+	icons_left = false, -- only for non-atom styles!
+	style = "atom_colored", -- default/flat_light/flat_dark/atom/atom_colored
+	format_colors = {
+		tailwind = false, -- will work for css lsp too
+		icon = "󱓻",
+	},
+}
+
+-- custom highlights per style!
+local styles = {
+
+	default = {
+		CmpBorder = { fg = colors.one_bg, bg = colors.one_bg },
+	},
+
+	atom = {
+		CmpItemMenu = { fg = colors.light_grey, italic = true },
+		CmpPmenu = {
+			bg = colors.black2,
+		},
+
+		CmpDoc = { bg = colors.darker_black },
+		CmpDocBorder = { fg = colors.darker_black, bg = colors.darker_black },
+	},
+
+	atom_colored = {
+		CmpBorder = { fg = colors.darker_black, bg = colors.darker_black },
+		CmpItemMenu = { fg = colors.light_grey, italic = true },
+		CmpPmenu = {
+			bg = colors.darker_black,
+		},
+
+		CmpDoc = { bg = colors.darker_black },
+		CmpDocBorder = { fg = colors.darker_black, bg = colors.darker_black },
+	},
+
+	flat_light = {
+		CmpPmenu = {
+			bg = colors.black2,
+		},
+
+		CmpDoc = { bg = colors.darker_black },
+		CmpBorder = { fg = colors.black2, bg = colors.black2 },
+		CmpDocBorder = { fg = colors.darker_black, bg = colors.darker_black },
+	},
+
+	flat_dark = {
+		CmpPmenu = {
+			bg = colors.darker_black,
+		},
+
+		CmpBorder = { fg = colors.darker_black, bg = colors.darker_black },
+		CmpDocBorder = { fg = colors.black2, bg = colors.black2 },
+		CmpDoc = { bg = colors.black2 },
+	},
+}
+
+local generate_color = require("theme.colors").change_hex_lightness
+
+local black2_l = generate_color(colors.black2, 6)
+local black2_d = generate_color(colors.black2, -6)
+
+-- override item_kind highlights for atom style
+if cmp_ui.style == "atom" then
+	for key, value in pairs(item_kinds) do
+		item_kinds[key] = vim.tbl_deep_extend("force", value, { bg = vim.o.bg == "dark" and black2_l or black2_d })
+	end
+end
+
+-- override item_kind highlights for atom_colored style
+if cmp_ui.style == "atom_colored" then
+	for key, value in pairs(item_kinds) do
+		item_kinds[key] = { fg = value.fg, bg = mixcolors(value.fg, colors.black, 70) }
+	end
+end
+
+highlights = vim.tbl_deep_extend("force", highlights, styles[cmp_ui.style] or {})
+highlights = vim.tbl_deep_extend("force", highlights, item_kinds)
+
+return highlights

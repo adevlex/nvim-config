@@ -1,44 +1,111 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
-
-if not colors then
-  return { error = "colors not found" }
-end
+local theme = require("theme").get_theme_tb("base16_palette")
+local colors = require("theme").get_theme_tb("main_colors")
 
 return {
-  -- GitSigns
-  GitSignsAdd = { fg = colors.green },
-  GitSignsAdded = { fg = colors.blue },
-  GitSignsChange = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.8) },
-  GitSignsDelete = { fg = colors.red },
-  GitSignsCurrentLineBlame = { fg = utils.blend(colors.foreground, colors.background, 0.15) },
 
-  diffOldFile = { fg = colors.red },
-  diffNewFile = { fg = colors.blue },
+	diffOldFile = {
+		fg = colors.baby_pink,
+	},
 
-  DiffAdd = { fg = colors.green },
-  DiffAdded = { fg = colors.blue },
-  DiffChange = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.8) },
-  DiffChangeDelete = { fg = colors.red },
-  DiffModified = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.8) },
-  DiffDelete = { fg = colors.red },
-  DiffRemoved = { fg = colors.red },
-  DiffText = { fg = colors.foreground, bg = colors.lighter },
+	diffNewFile = {
+		fg = colors.blue,
+	},
 
-  -- git commits
-  gitcommitOverflow = { fg = colors.base08 },
-  gitcommitSummary = { fg = colors.base0B },
-  gitcommitComment = { fg = colors.base03 },
-  gitcommitUntracked = { fg = colors.base03 },
-  gitcommitDiscarded = { fg = colors.base03 },
-  gitcommitSelected = { fg = colors.base03 },
-  gitcommitHeader = { fg = colors.base0E },
-  gitcommitSelectedType = { fg = colors.base0D },
-  gitcommitUnmergedType = { fg = colors.base0D },
-  gitcommitDiscardedType = { fg = colors.base0D },
-  gitcommitBranch = { fg = colors.base09, bold = true },
-  gitcommitUntrackedFile = { fg = colors.base0A },
-  gitcommitUnmergedFile = { fg = colors.base08, bold = true },
-  gitcommitDiscardedFile = { fg = colors.base08, bold = true },
-  gitcommitSelectedFile = { fg = colors.base0B, bold = true },
+	DiffAdd = {
+		fg = colors.blue,
+	},
+
+	DiffAdded = {
+		fg = colors.green,
+	},
+
+	DiffChange = {
+		fg = colors.light_grey,
+	},
+
+	DiffChangeDelete = {
+		fg = colors.red,
+	},
+
+	DiffModified = {
+		fg = colors.orange,
+	},
+
+	DiffDelete = {
+		fg = colors.red,
+	},
+
+	DiffRemoved = {
+		fg = colors.red,
+	},
+
+	DiffText = {
+		fg = colors.white,
+		bg = colors.black2,
+	},
+
+	-- git commits
+	gitcommitOverflow = {
+		fg = theme.base08,
+	},
+
+	gitcommitSummary = {
+		fg = theme.base0B,
+	},
+
+	gitcommitComment = {
+		fg = theme.base03,
+	},
+
+	gitcommitUntracked = {
+		fg = theme.base03,
+	},
+
+	gitcommitDiscarded = {
+		fg = theme.base03,
+	},
+
+	gitcommitSelected = {
+		fg = theme.base03,
+	},
+
+	gitcommitHeader = {
+		fg = theme.base0E,
+	},
+
+	gitcommitSelectedType = {
+		fg = theme.base0D,
+	},
+
+	gitcommitUnmergedType = {
+		fg = theme.base0D,
+	},
+
+	gitcommitDiscardedType = {
+		fg = theme.base0D,
+	},
+
+	gitcommitBranch = {
+		fg = theme.base09,
+		bold = true,
+	},
+
+	gitcommitUntrackedFile = {
+		fg = theme.base0A,
+	},
+
+	gitcommitUnmergedFile = {
+		fg = theme.base08,
+		bold = true,
+	},
+
+	gitcommitDiscardedFile = {
+		fg = theme.base08,
+		bold = true,
+	},
+
+	gitcommitSelectedFile = {
+		fg = theme.base0B,
+		bold = true,
+	},
 }

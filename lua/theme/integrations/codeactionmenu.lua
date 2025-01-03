@@ -1,20 +1,16 @@
-local colors = require("theme").getDefaultTheme()
-
-if not colors then
-  return { error = "colors not found" }
-end
+local colors = require("theme").get_theme_tb("main_colors")
 
 return {
-  CodeActionMenuWarningMessageText = { fg = colors.base05 },
-  CodeActionMenuWarningMessageBorder = { fg = colors.base08 },
-  CodeActionMenuMenuIndex = { fg = colors.base0E },
-  CodeActionMenuMenuKind = { fg = colors.base0A },
-  CodeActionMenuMenuTitle = { fg = colors.base05 },
-  CodeActionMenuMenuDisabled = { link = "Comment" },
-  CodeActionMenuMenuSelection = { fg = colors.base0E },
-  CodeActionMenuDetailsTitle = { fg = colors.base05 },
-  CodeActionMenuDetailsLabel = { fg = colors.base0B },
-  CodeActionMenuDetailsPreferred = { fg = colors.base0D },
-  CodeActionMenuDetailsDisabled = { link = "Comment" },
-  CodeActionMenuDetailsUndefined = { link = "Comment" },
+	CodeActionMenuWarningMessageText = { fg = colors.white },
+	CodeActionMenuWarningMessageBorder = { fg = colors.red },
+	CodeActionMenuMenuIndex = { fg = colors.blue },
+	CodeActionMenuMenuKind = { fg = colors.green },
+	CodeActionMenuMenuTitle = { fg = colors.white },
+	CodeActionMenuMenuDisabled = { link = "Comment" },
+	CodeActionMenuMenuSelection = { fg = colors.blue },
+	CodeActionMenuDetailsTitle = { fg = colors.white },
+	CodeActionMenuDetailsLabel = { fg = colors.yellow },
+	CodeActionMenuDetailsPreferred = { fg = colors.green },
+	CodeActionMenuDetailsDisabled = { link = "Comment" },
+	CodeActionMenuDetailsUndefined = { link = "Comment" },
 }

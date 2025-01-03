@@ -1,53 +1,48 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
-
-if not colors then
-  return { error = "colors not found" }
-end
+local colors = require("theme").get_theme_tb("main_colors")
 
 return {
-  -- Dap
-  DapBreakpoint = { fg = colors.red },
-  DapBreakpointCondition = { fg = utils.mix(colors.red, colors.green, 0.5) },
-  DapLogPoint = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DapStopped = { fg = colors.blue },
+	-- Dap
+	DapBreakpoint = { fg = colors.red },
+	DapBreakpointCondition = { fg = colors.yellow },
+	DapLogPoint = { fg = colors.cyan },
+	DapStopped = { fg = colors.baby_pink },
 
-  -- DapUI
-  DAPUIScope = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DAPUIType = { fg = utils.mix(colors.red, colors.blue, 0.5) },
-  DAPUIValue = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DAPUIVariable = { fg = colors.foreground },
-  DapUIModifiedValue = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5) },
-  DapUIDecoration = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DapUIThread = { fg = colors.green },
-  DapUIStoppedThread = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DapUISource = { fg = colors.lavender },
-  DapUILineNumber = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DapUIFloatBorder = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
+	-- DapUI
+	DAPUIScope = { fg = colors.cyan },
+	DAPUIType = { fg = colors.dark_purple },
+	DAPUIValue = { fg = colors.cyan },
+	DAPUIVariable = { fg = colors.white },
+	DapUIModifiedValue = { fg = colors.orange },
+	DapUIDecoration = { fg = colors.cyan },
+	DapUIThread = { fg = colors.green },
+	DapUIStoppedThread = { fg = colors.cyan },
+	DapUISource = { fg = colors.lavender },
+	DapUILineNumber = { fg = colors.cyan },
+	DapUIFloatBorder = { fg = colors.cyan },
 
-  DapUIWatchesEmpty = { fg = colors.red },
-  DapUIWatchesValue = { fg = colors.green },
-  DapUIWatchesError = { fg = colors.red },
+	DapUIWatchesEmpty = { fg = colors.baby_pink },
+	DapUIWatchesValue = { fg = colors.green },
+	DapUIWatchesError = { fg = colors.baby_pink },
 
-  DapUIBreakpointsPath = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  DapUIBreakpointsInfo = { fg = colors.green },
-  DapUIBreakPointsCurrentLine = { fg = colors.green, bold = true },
-  DapUIBreakpointsDisabledLine = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
+	DapUIBreakpointsPath = { fg = colors.cyan },
+	DapUIBreakpointsInfo = { fg = colors.green },
+	DapUIBreakPointsCurrentLine = { fg = colors.green, bold = true },
+	DapUIBreakpointsDisabledLine = { fg = colors.grey_fg2 },
 
-  DapUIStepOver = { fg = colors.blue },
-  DapUIStepOverNC = { fg = colors.blue },
-  DapUIStepInto = { fg = colors.blue },
-  DapUIStepIntoNC = { fg = colors.blue },
-  DapUIStepBack = { fg = colors.blue },
-  DapUIStepBackNC = { fg = colors.blue },
-  DapUIStepOut = { fg = colors.blue },
-  DapUIStepOutNC = { fg = colors.blue },
-  DapUIStop = { fg = colors.red },
-  DapUIStopNC = { fg = colors.red },
-  DapUIPlayPause = { fg = colors.green },
-  DapUIPlayPauseNC = { fg = colors.green },
-  DapUIRestart = { fg = colors.green },
-  DapUIRestartNC = { fg = colors.green },
-  DapUIUnavailable = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
-  DapUIUnavailableNC = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
+	DapUIStepOver = { fg = colors.blue },
+	DapUIStepOverNC = { fg = colors.blue },
+	DapUIStepInto = { fg = colors.blue },
+	DapUIStepIntoNC = { fg = colors.blue },
+	DapUIStepBack = { fg = colors.blue },
+	DapUIStepBackNC = { fg = colors.blue },
+	DapUIStepOut = { fg = colors.blue },
+	DapUIStepOutNC = { fg = colors.blue },
+	DapUIStop = { fg = colors.red },
+	DapUIStopNC = { fg = colors.red },
+	DapUIPlayPause = { fg = colors.green },
+	DapUIPlayPauseNC = { fg = colors.green },
+	DapUIRestart = { fg = colors.green },
+	DapUIRestartNC = { fg = colors.green },
+	DapUIUnavailable = { fg = colors.grey_fg },
+	DapUIUnavailableNC = { fg = colors.grey_fg },
 }

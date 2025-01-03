@@ -1,32 +1,27 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
-
-if not colors then
-  return { error = "colors not found" }
-end
+local colors = require("theme").get_theme_tb("main_colors")
 
 return {
-  TroubleCount = { fg = colors.red },
-  TroubleCode = { fg = colors.foreground },
-  TroubleWarning = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5) },
-  TroubleSignWarning = { fg = utils.mix(colors.red, colors.green, 0.5) },
-  TroubleTextWarning = { fg = colors.foreground },
-  TroublePreview = { fg = colors.red },
-  TroubleSource = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  TroubleSignHint = { fg = colors.green },
-  TroubleTextHint = { fg = colors.red },
-  TroubleHint = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5) },
-  TroubleSignOther = { fg = colors.green },
-  TroubleSignInformation = { fg = colors.foreground },
-  TroubleTextInformation = { fg = colors.blue },
-  TroubleInformation = { fg = colors.foreground },
-  TroubleError = { fg = colors.red },
-  TroubleTextError = { fg = colors.red },
-  TroubleSignError = { fg = colors.red },
-  TroubleText = { fg = colors.foreground },
-  TroubleFile = { fg = utils.mix(colors.red, colors.green, 0.5) },
-  TroubleFoldIcon = { fg = utils.mix(colors.foreground, colors.blue, 0.7) },
-  TroubleNormal = { fg = colors.foreground },
-  TroubleLocation = { fg = colors.red },
-  TroubleIndent = { link = "Comment" },
+	TroubleCount = { fg = colors.pink },
+	TroubleCode = { fg = colors.white },
+	TroubleWarning = { fg = colors.orange },
+	TroubleSignWarning = { link = "DiagnosticWarn" },
+	TroubleTextWarning = { fg = colors.white },
+	TroublePreview = { fg = colors.red },
+	TroubleSource = { fg = colors.cyan },
+	TroubleSignHint = { link = "DiagnosticHint" },
+	TroubleTextHint = { fg = colors.white },
+	TroubleHint = { fg = colors.orange },
+	TroubleSignOther = { link = "DiagnosticNormal" },
+	TroubleSignInformation = { fg = colors.white },
+	TroubleTextInformation = { fg = colors.white },
+	TroubleInformation = { fg = colors.white },
+	TroubleError = { fg = colors.red },
+	TroubleTextError = { fg = colors.white },
+	TroubleSignError = { link = "DiagnosticError" },
+	TroubleText = { fg = colors.white },
+	TroubleFile = { fg = colors.yellow },
+	TroubleFoldIcon = { link = "Folded" },
+	TroubleNormal = { fg = colors.white },
+	TroubleLocation = { fg = colors.red },
+	TroubleIndent = { link = colors.Comment },
 }

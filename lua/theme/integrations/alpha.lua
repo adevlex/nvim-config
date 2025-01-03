@@ -1,15 +1,11 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
-
-if not colors then
-  return { error = "colors not found" }
-end
+local colors = require("theme").get_theme_tb("main_colors")
+local utils = require("theme.colors")
 
 return {
-  AlphaHeader = { fg = colors.base0E, bg = colors.background },
-  AlphaLabel = { fg = colors.base09, bg = colors.background },
-  AlphaIcon = { fg = colors.base0E, bg = colors.background },
-  AlphaKeyPrefix = { fg = colors.red, bg = utils.blend(colors.red, colors.base00, 0.1) },
-  AlphaMessage = { fg = colors.base0D, bg = colors.background },
-  AlphaFooter = { fg = colors.base0A, bg = colors.background },
+	AlphaHeader = { fg = colors.blue },
+	AlphaLabel = { fg = colors.yellow, bg = colors.black },
+	AlphaIcon = { fg = colors.nord_blue, bg = colors.black },
+	AlphaKeyPrefix = { fg = colors.red, bg = utils.blend(colors.red, colors.black, 0.1) },
+	AlphaMessage = { fg = colors.purple, bg = colors.black },
+	AlphaFooter = { fg = colors.sun, bg = colors.black },
 }

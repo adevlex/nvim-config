@@ -1,43 +1,15 @@
-local colors = require("theme").getDefaultTheme()
-local utils = require("core.utils")
-
-if not colors then
-  return { error = "colors not found" }
-end
+local colors = require("theme").get_theme_tb("main_colors")
+local utils = require("theme.colors")
 
 return {
-  NoiceMini = { bg = colors.darker, fg = colors.foreground },
-  NoiceCmdlinePopup = { bg = colors.darker, fg = colors.foreground },
-  NoiceCmdlinePopupBorder = { bg = "NONE", fg = colors.darker },
-  NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
-  NoiceCmdlinePopupTitle = { bg = colors.darker, fg = colors.red, bold = true },
-  NoiceCmdlinePopupTitleCmdline = { bg = colors.darker, fg = colors.green, bold = true },
-  NoiceCmdlinePopupTitleHelp = { bg = colors.darker, fg = colors.blue, bold = true },
-  NoiceCmdlinePopupTitleSearch = { bg = colors.darker, fg = colors.blue, bold = true },
-  NoiceCmdlinePopupTitleFilter = { bg = colors.darker, fg = colors.base0A, bold = true },
-  NoiceLspProgressSpinner = { fg = utils.blend(colors.foreground, colors.background, 0.2) },
-
-  -- Notify
-  NotifyBackground = { bg = colors.darker },
-  NotifyLogTime = { bg = colors.darker },
-  NotifyINFOBorder = { fg = colors.blue, bg = colors.darker },
-  NotifyWARNBorder = { fg = colors.base0A, bg = colors.darker },
-  NotifyERRORBorder = { fg = colors.red, bg = colors.darker },
-  NotifyDEBUGBorder = { fg = colors.base0E, bg = colors.darker },
-  NotifyTRACEBorder = { fg = colors.base0C, bg = colors.darker },
-  NotifyERRORIcon = { fg = colors.red, bg = colors.darker },
-  NotifyWARNIcon = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5), bg = colors.darker },
-  NotifyINFOIcon = { fg = colors.blue, bg = colors.darker },
-  NotifyDEBUGIcon = { fg = utils.mix(colors.foreground, colors.blue, 0.7), bg = colors.darker },
-  NotifyTRACEIcon = { fg = utils.mix(colors.red, colors.blue, 0.5), bg = colors.darker },
-  NotifyERRORTitle = { fg = colors.red, bg = colors.darker },
-  NotifyWARNTitle = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5), bg = colors.darker },
-  NotifyINFOTitle = { fg = colors.blue, bg = colors.darker },
-  NotifyDEBUGTitle = { fg = utils.mix(colors.foreground, colors.blue, 0.7), bg = colors.darker },
-  NotifyTRACETitle = { fg = utils.mix(colors.red, colors.blue, 0.5), bg = colors.darker },
-  NotifyERRORBody = { fg = colors.red, bg = colors.darker },
-  NotifyWARNBody = { fg = utils.mix(colors.red, utils.mix(colors.red, colors.green, 0.5), 0.5), bg = colors.darker },
-  NotifyINFOBody = { fg = colors.blue, bg = colors.darker },
-  NotifyDEBUGBody = { fg = utils.mix(colors.foreground, colors.blue, 0.7), bg = colors.darker },
-  NotifyTRACEBody = { fg = utils.mix(colors.red, colors.blue, 0.5), bg = colors.darker },
+	NoiceMini = { bg = colors.darker_black, fg = colors.white },
+	NoiceCmdlinePopup = { bg = colors.darker_black, fg = colors.white },
+	NoiceCmdlinePopupBorder = { bg = "NONE", fg = colors.darker_black },
+	NoiceCmdlinePopupBorderSearch = { link = "NoiceCmdlinePopupBorder" },
+	NoiceCmdlinePopupTitle = { bg = colors.darker_black, fg = colors.red, bold = true },
+	NoiceCmdlinePopupTitleCmdline = { bg = colors.purple, fg = colors.darker_black, bold = true },
+	NoiceCmdlinePopupTitleHelp = { bg = colors.red, fg = colors.darker_black, bold = true },
+	NoiceCmdlinePopupTitleSearch = { bg = colors.blue, fg = colors.darker_black, bold = true },
+	NoiceCmdlinePopupTitleFilter = { bg = colors.sun, fg = colors.darker_black, bold = true },
+	NoiceLspProgressSpinner = { fg = utils.blend(colors.white, colors.black, 0.2) },
 }
