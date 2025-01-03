@@ -1,22 +1,22 @@
 -- Definir la función ClickGit en el ámbito global
 function ClickGit()
-    ---@diagnostic disable-next-line: unused-local
-    local status_ok, toggleterm = pcall(require, "toggleterm")
-    if not status_ok then
-        vim.notify("toggleterm.nvim isn't installed!!!", vim.log.levels.ERROR)
-        return
-    end
+	---@diagnostic disable-next-line: unused-local
+	local status_ok, toggleterm = pcall(require, "toggleterm")
+	if not status_ok then
+		vim.notify("toggleterm.nvim isn't installed!!!", vim.log.levels.ERROR)
+		return
+	end
 
-    -- Verificar si estamos dentro de un repositorio git
-    local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1]
-    if is_git_repo ~= "true" then
-        vim.notify("Not inside a git repository. Initialize a git repository first.", vim.log.levels.ERROR)
-        return
-    end
+	-- Verificar si estamos dentro de un repositorio git
+	local is_git_repo = vim.fn.systemlist("git rev-parse --is-inside-work-tree")[1]
+	if is_git_repo ~= "true" then
+		vim.notify("Not inside a git repository. Initialize a git repository first.", vim.log.levels.ERROR)
+		return
+	end
 
-    local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
-    lazygit:toggle()
+	local Terminal = require("toggleterm.terminal").Terminal
+	local lazygit = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+	lazygit:toggle()
 end
 
 local map = vim.keymap.set
@@ -33,10 +33,10 @@ map("n", "<leader>di", "<cmd>lua require'dap'.step_into()<CR>", { desc = "Step i
 map("n", "<leader>du", "<cmd>lua require'dap'.step_out()<CR>", { desc = "Step out" })
 map("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>", { desc = "Toggle breakpoint" })
 map(
-    "n",
-    "<leader>dB",
-    "<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
-    { desc = "Set breakpoint" }
+	"n",
+	"<leader>dB",
+	"<cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+	{ desc = "Set breakpoint" }
 )
 map("n", "<leader>dd", "<cmd>lua require'dapui'.toggle()<CR>", { desc = "Toggle debugger UI" })
 map("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<CR>", { desc = "Run last" })
@@ -71,10 +71,10 @@ map("n", "<leader>gR", "<cmd>lua require'gitsigns'.reset_buffer()<CR>", { desc =
 map("n", "<leader>gs", "<cmd>lua require'gitsigns'.stage_hunk()<CR>", { desc = "Stage hunk" })
 map("n", "<leader>gu", "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>", { desc = "Undo stage hunk" })
 map(
-    "n",
-    "<leader>gd",
-    ":lua if next(require('diffview.lib').views) == nil then vim.cmd('DiffviewOpen') else vim.cmd('DiffviewClose') end<CR>",
-    { desc = "Diff" }
+	"n",
+	"<leader>gd",
+	":lua if next(require('diffview.lib').views) == nil then vim.cmd('DiffviewOpen') else vim.cmd('DiffviewClose') end<CR>",
+	{ desc = "Diff" }
 )
 
 -- LSP
@@ -85,11 +85,11 @@ map("n", "<leader>sh", vim.lsp.buf.signature_help, { desc = "Signature help" })
 map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
 map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
 map("n", "<leader>wl", function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 end, { desc = "List workspace folders" })
 map("n", "<leader>D", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 map("n", "<leader>ra", function()
-    require("core.renamer")()
+	require("core.renamer")()
 end, { desc = "NvRenamer" })
 map("n", "gr", vim.lsp.buf.references, { desc = "Show references" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
@@ -117,17 +117,22 @@ map("n", "<leader>tl", ":ToggleTerm<CR>", { desc = "Toggle" })
 map("n", "<leader>mh", ":lua require('minty.huefy').open()<CR>", { noremap = true, silent = true })
 map("n", "<leader>ms", ":lua require('minty.shades').open()<CR>", { noremap = true, silent = true })
 map("n", "<RightMouse>", function()
-    vim.cmd.exec('"normal! \\<RightMouse>"')
+	vim.cmd.exec('"normal! \\<RightMouse>"')
 
-    local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-    require("menu").open(options, { mouse = true })
+	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+	require("menu").open(options, { mouse = true })
 end, {})
 
 -- preview mask
 map("n", "<leader>fd", function()
-    require("core.previewer_mask").masked_search({
-        prompt_title = "Buscar Archivos",
-        layout_config = { preview_width = 0.6 },
-        hidden = true,
-    })
+	require("core.previewer_mask").masked_search({
+		prompt_title = "Buscar Archivos",
+		layout_config = { preview_width = 0.6 },
+		hidden = true,
+	})
 end, { noremap = true, silent = true, desc = "Buscar archivos (con datos privados enmascarados)" })
+
+-- Themes
+map("n", "<leader>ft", function()
+	require("theme.pick").open()
+end, { desc = "telescope themes" })
