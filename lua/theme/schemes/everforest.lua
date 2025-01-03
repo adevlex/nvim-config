@@ -1,26 +1,69 @@
-return {
-    foreground = "#D3C6AA",
-    background = "#262c34",
-    darker = "#232A2E",
-    lighter = "#323C41",
-    red = "#E68183",
-    green = "#A7C080",
-    blue = "#7FBBB3",
+-- Credits to original https://github.com/sainnhe/everforest
+-- This is modified version of it
 
-    base00 = "#2B3339",
-    base01 = "#323C41",
-    base02 = "#3C474D",
-    base03 = "#465258",
-    base04 = "#4a5258",
-    base05 = "#D3C6AA",
-    base06 = "#E9E8D2",
-    base07 = "#FDF6E3",
-    base08 = "#E68183",
-    base09 = "#D9BB80",
-    base0A = "#E39B7B",
-    base0B = "#A7C080",
-    base0C = "#87C095",
-    base0D = "#7FBBB3",
-    base0E = "#D699B6",
-    base0F = "#AB6C7D",
+local M = {}
+
+M.main_colors = {
+	white = "#D3C6AA",
+	darker_black = "#272f35",
+	black = "#2b3339", --  nvim bg
+	black2 = "#323a40",
+	one_bg = "#363e44",
+	one_bg2 = "#363e44",
+	one_bg3 = "#3a4248",
+	grey = "#4e565c",
+	grey_fg = "#545c62",
+	grey_fg2 = "#626a70",
+	light_grey = "#656d73",
+	red = "#e67e80",
+	baby_pink = "#ce8196",
+	pink = "#ff75a0",
+	line = "#3a4248", -- for lines like vertsplit
+	green = "#83c092",
+	vibrant_green = "#a7c080",
+	nord_blue = "#78b4ac",
+	blue = "#7393b3",
+	yellow = "#dbbc7f",
+	sun = "#d1b171",
+	purple = "#ecafcc",
+	dark_purple = "#d699b6",
+	teal = "#69a59d",
+	orange = "#e69875",
+	cyan = "#95d1c9",
+	statusline_bg = "#2e363c",
+	lightbg = "#3d454b",
+	pmenu_bg = "#83c092",
+	folder_bg = "#7393b3",
 }
+
+M.base16_palette = {
+	base00 = "#2b3339",
+	base01 = "#323c41",
+	base02 = "#3a4248",
+	base03 = "#424a50",
+	base04 = "#4a5258",
+	base05 = "#d3c6aa",
+	base06 = "#ddd0b4",
+	base07 = "#e7dabe",
+	base08 = "#7fbbb3",
+	base09 = "#d699b6",
+	base0A = "#83c092",
+	base0B = "#dbbc7f",
+	base0C = "#e69875",
+	base0D = "#a7c080",
+	base0E = "#e67e80",
+	base0F = "#d699b6",
+}
+
+M.theme_type = "dark"
+
+M.custom_highlights = {
+	treesitter = {
+		["@tag"] = { fg = M.main_colors.orange },
+		["@tag.delimiter"] = { fg = M.main_colors.green },
+	},
+}
+
+M = require("theme").override_theme(M, "everforest")
+
+return M
