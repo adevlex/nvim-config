@@ -35,34 +35,23 @@ end
 
 --- Recarga la configuración de Neovim al guardar un archivo .lua
 local function reload_neovim_config()
-	local fp = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":r")
+	local file_path = vim.fn.expand("%:p")
 	local app_name = vim.env.NVIM_APPNAME or "nvim"
-	local module = string.gsub(fp, "^.*/" .. app_name .. "/lua/", ""):gsub("/", ".")
-	vim.cmd("silent source %")
-	if vim.g.loadNvimTheme then
-		require("plenary.reload").reload_module("theme")
-	end
+	local module = file_path:match("^.*/" .. app_name .. "/lua/(.+).lua$"):gsub("/", ".")
+
+	vim.cmd("silent! source " .. file_path)
+
+	require("plenary.reload").reload_module("theme")
+	require("theme").load_all_highlights()
 	require("plenary.reload").reload_module(module)
-	if vim.g.loadNvimTheme then
-		require("theme").loadThemes()
-	end
 end
 
 -- Autocomandos
 -- ================================
 
--- Autocomando para cargar el tema al iniciar
+-- Autocomando para cargar el alpha al iniciar
 vim.api.nvim_create_autocmd("UIEnter", {
 	callback = function()
-		if vim.g.loadNvimTheme then
-			local themeFile = vim.g.themeCache .. "allThemes"
-			if vim.fn.filereadable(themeFile) == 1 then
-				dofile(themeFile)
-			else
-				vim.notify("El archivo " .. themeFile .. " no existe", vim.log.levels.ERROR)
-			end
-		end
-
 		if should_skip_alpha() then
 			return
 		end
@@ -145,15 +134,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 -- ================================
 -- Comandos personalizados
 -- ================================
-
-vim.api.nvim_create_user_command("NvimTheme", function()
-	require("theme.pick").setup()
-end, { desc = "Abrir selector de temas" })
-
-vim.api.nvim_create_user_command("NvimToggleTrans", function()
-	require("theme.pick").toggleTransparency()
-end, { desc = "Alternar transparencia del tema" })
-
 vim.api.nvim_create_user_command("Ranger", function()
 	require("core.functions").ranger_toggle()
 end, { desc = "Abrir/Alternar Ranger" })
