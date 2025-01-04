@@ -15,10 +15,10 @@ o.cursorlineopt = "number"
 
 -- Indenting
 o.expandtab = true
-o.shiftwidth = 4
+o.shiftwidth = 2
 o.smartindent = true
-o.tabstop = 4
-o.softtabstop = 4
+o.tabstop = 2
+o.softtabstop = 2
 
 opt.fillchars = { eob = " " }
 o.ignorecase = true
@@ -57,8 +57,7 @@ g["loaded_ruby_provider"] = 0
 
 g.toggle_cmp = true
 g.code_action_menu_window_border = "single"
-g.NvimTheme = "catppuccin"
+g.nvimTheme = "catppuccin"
 g.themeCache = vim.fn.stdpath("data") .. "/colors_data/"
 g.transparency = false
-g.loadNvimTheme = true
 g.statusStyle = "blocks" -- fancy, minimal, blocks
