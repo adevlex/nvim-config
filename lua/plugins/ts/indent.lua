@@ -1,48 +1,13 @@
 return {
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			local highlights = {
-				"RainbowRed",
-				"RainbowYellow",
-				"RainbowBlue",
-				"RainbowOrange",
-				"RainbowGreen",
-				"RainbowViolet",
-				"RainbowCyan",
-			}
-
-			require("ibl").setup({
-				indent = {
-					--highlight = highlights,
-					char = "│",
-					tab_char = "│",
-				},
-				scope = { enabled = false },
-				exclude = {
-					filetypes = {
-						"help",
-						"alpha",
-						"dashboard",
-						"tedash",
-						"neo-tree",
-						"Trouble",
-						"trouble",
-						"lazy",
-						"mason",
-						"notify",
-						"toggleterm",
-						"lazyterm",
-					},
-				},
-			})
-		end,
+	"lukas-reineke/indent-blankline.nvim",
+	event = "User FilePost",
+	opts = {
+		indent = { char = "│", highlight = "IblChar" },
+		scope = { char = "│", highlight = "IblScopeChar" },
 	},
-
-	--    {
-	--        'echasnovski/mini.indentscope',
-	--        opts = { symbol = '│' },
-	--    },
+	config = function(_, opts)
+		local hooks = require("ibl.hooks")
+		hooks.register(hooks.type.WHITESPACE, hooks.builtin.hide_first_space_indent_level)
+		require("ibl").setup(opts)
+	end,
 }
