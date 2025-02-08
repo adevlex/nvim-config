@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 local lighten_col = require("theme.colors").change_hex_lightness
 
 local highligths = {

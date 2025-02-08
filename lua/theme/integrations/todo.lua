@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 
 return {
 	TodoBgFix = { fg = colors.black2, bg = colors.red, bold = true },

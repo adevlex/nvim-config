@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 local utils = require("theme.colors")
 
 return {
@@ -12,6 +12,7 @@ return {
 	BufflineBufOnClose = { fg = colors.red, bg = colors.black },
 	BuffLineBufOffClose = { fg = colors.red, bg = utils.blend(colors.black, colors.white, 0.93) },
 
+	BufflineArrow = { fg = colors.blue },
 	BuffLineTree = { bg = colors.black, fg = colors.white },
 	BuffLineEmpty = { bg = colors.black, fg = colors.white },
 	BuffLineEmptyColor = { bg = colors.black, fg = colors.white },

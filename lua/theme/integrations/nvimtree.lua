@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 local theme_type = require("theme").get_theme_tb("theme_type")
 local tune_color = require("theme.colors").change_hex_lightness
 
@@ -9,7 +9,7 @@ return {
 	NvimTreeFolderName = { fg = colors.folder_bg },
 	NvimTreeFolderArrowOpen = { fg = colors.folder_bg },
 	NvimTreeFolderArrowClosed = { fg = colors.grey_fg },
-	NvimTreeGitDirty = { fg = colors.red },
+	NvimTreeGitDirty = { fg = colors.sun },
 	NvimTreeIndentMarker = { fg = (theme_type == "dark" and tune_color(colors.line, -2) or colors.one_bg2) },
 	NvimTreeNormal = { bg = colors.darker_black },
 	NvimTreeNormalNC = { bg = colors.darker_black },
@@ -39,7 +39,7 @@ return {
 	},
 
 	NvimTreeGitNew = {
-		fg = colors.yellow,
+		fg = colors.green,
 	},
 
 	NvimTreeGitDeleted = {

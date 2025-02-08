@@ -1,5 +1,5 @@
-local base16 = require("theme").get_theme_tb("base16_palette")
-local colors = require("theme").get_theme_tb("main_colors")
+local base16 = require("theme").get_theme_tb("base_16")
+local colors = require("theme").get_theme_tb("base_30")
 
 local hlgroups = {
 	NavicIconsConstant = { fg = base16.base09 },

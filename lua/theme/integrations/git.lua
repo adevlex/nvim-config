@@ -1,5 +1,5 @@
-local theme = require("theme").get_theme_tb("base16_palette")
-local colors = require("theme").get_theme_tb("main_colors")
+local theme = require("theme").get_theme_tb("base_16")
+local colors = require("theme").get_theme_tb("base_30")
 
 return {
 

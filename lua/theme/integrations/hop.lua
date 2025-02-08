@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 
 return {
 	HopNextKey = { fg = colors.red, bold = true },

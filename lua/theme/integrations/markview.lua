@@ -1,4 +1,4 @@
-local colors = require("theme").get_theme_tb("main_colors")
+local colors = require("theme").get_theme_tb("base_30")
 
 return {
 	["@markup.heading.1.markdown"] = { fg = colors.red },
