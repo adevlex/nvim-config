@@ -1,152 +1,140 @@
+local telescope = {
+	pickers = require("telescope.pickers"),
+	finders = require("telescope.finders"),
+	actions = require("telescope.actions"),
+	action_state = require("telescope.actions.state"),
+	config = require("telescope.config").values,
+}
+
 local M = {}
-local api = vim.api
-local volt = require("volt")
-local ui = require("theme.ui")
-local state = require("theme.state")
-local colors = require("theme.colors")
 
-state.ns = api.nvim_create_namespace("Themes")
+local function update_theme_in_file(theme)
+	local file_path = vim.fn.stdpath("config") .. "/lua/core/cfg.lua"
+	local lines = {}
 
-M.list_themes = function()
-	local default_themes = vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/theme/schemes/") or {}
-
-	for index, theme in ipairs(default_themes) do
-		default_themes[index] = theme:match("(.+)%..+")
-	end
-
-	return default_themes
-end
-
-if not state.val then
-	state.val = M.list_themes()
-	state.themes_shown = state.val
-end
-
-local gen_word_pad = function()
-	local largest = 0
-
-	for i = state.index, math.min(state.index + state.limit[state.style], #state.val), 1 do
-		local namelen = #state.val[i]
-		if namelen > largest then
-			largest = namelen
+	-- Leer el archivo línea por línea
+	local file = io.open(file_path, "r")
+	if file then
+		for line in file:lines() do
+			-- Si encuentra la línea del tema, la reemplaza
+			local updated_line = line:match("theme%s*=") and ("  theme = '" .. theme .. "',") or line
+			table.insert(lines, updated_line)
 		end
+		file:close()
 	end
 
-	state.longest_name = largest
+	-- Escribir las líneas modificadas de vuelta al archivo
+	file = io.open(file_path, "w")
+	if file then
+		for _, line in ipairs(lines) do
+			file:write(line .. "\n")
+		end
+		file:close()
+	else
+		vim.notify("Can't write to file", vim.log.levels.ERROR)
+	end
 end
 
-M.open = function(opts)
-	opts = opts or {}
-	state.buf = api.nvim_create_buf(false, true)
-	state.input_buf = api.nvim_create_buf(false, true)
+function M.is_available(plugin)
+	local ok, lazy_config = pcall(require, "lazy.core.config")
+	return ok and lazy_config.spec.plugins[plugin] ~= nil
+end
 
-	state.style = opts.style or "bordered"
+local themes = (function()
+	local theme_files = vim.fn.readdir(vim.fn.stdpath("config") .. "/lua/theme/schemes")
+	local theme_names = {}
+	for _, file in ipairs(theme_files) do
+		table.insert(theme_names, vim.fn.fnamemodify(file, ":r"))
+	end
+	table.sort(theme_names)
+	return theme_names
+end)()
 
-	local style = state.style
+local function reload_theme_module()
+	package.loaded["theme"] = nil
+	require("theme").load_all_highlights()
+end
 
-	state.icons.user = opts.icon
-	state.icon = state.icons.user or state.icons[style]
+local function set_theme(theme)
+	if theme then
+		vim.g.nvimTheme = theme
+		update_theme_in_file(theme)
+		reload_theme_module()
+	end
+end
 
-	gen_word_pad()
+local function handle_text_changed()
+	local selected = telescope.action_state.get_selected_entry()
+	if selected then
+		set_theme(selected[1])
+	end
+end
 
-	state.w = state.longest_name + state.word_gap + (#state.order * api.nvim_strwidth(state.icon)) + (state.xpad * 2)
+local function map_telescope_actions(bufnr, map)
+	map("i", "<CR>", function()
+		local selected = telescope.action_state.get_selected_entry()
+		if selected then
+			set_theme(selected[1])
+			telescope.actions.close(bufnr)
+		end
+	end)
 
-	if style == "compact" then
-		state.w = state.w + 4 -- 1 x 2 padding on left/right + 2 of scrollbar
+	local function move_selection(next)
+		if next then
+			telescope.actions.move_selection_next(bufnr)
+		else
+			telescope.actions.move_selection_previous(bufnr)
+		end
+		handle_text_changed()
 	end
 
-	if style == "flat" then
-		state.w = state.w + 8
-	end
+	map("i", "<Down>", function()
+		move_selection(true)
+	end)
+	map("i", "<C-j>", function()
+		move_selection(true)
+	end)
+	map("i", "<Up>", function()
+		move_selection(false)
+	end)
+	map("i", "<C-k>", function()
+		move_selection(false)
+	end)
+end
 
-	volt.gen_data({
-		{
-			buf = state.buf,
-			layout = { { name = "themes", lines = ui[state.style] } },
-			xpad = state.xpad,
-			ns = state.ns,
-		},
-	})
+local function create_autocmd(bufnr)
+	vim.schedule(function()
+		vim.api.nvim_create_autocmd("TextChangedI", {
+			buffer = bufnr,
+			callback = handle_text_changed,
+		})
+	end)
+end
 
-	local h = state.limit[style] + 1
+function M.setup()
+	telescope.pickers
+		.new({}, {
+			prompt_title = "  Colorschemes",
+			layout_config = { height = 0.50, width = 0.50 },
+			finder = telescope.finders.new_table({ results = themes }),
+			sorter = telescope.config.generic_sorter(),
+			attach_mappings = function(bufnr, map)
+				create_autocmd(bufnr)
+				map_telescope_actions(bufnr, map)
+				return true
+			end,
+		})
+		:find()
+end
 
-	if style == "flat" or style == "bordered" then
-		local step = state.scroll_step[state.style]
-		h = (h * step) - 5
-	end
+function M.toggle_transparency()
+	vim.g.transparency = not vim.g.transparency
+	reload_theme_module()
+end
 
-	local input_win_opts = {
-		row = math.floor((vim.o.lines - h) / 2),
-		col = math.floor((vim.o.columns - state.w) / 2),
-		width = state.w,
-		height = 1,
-		relative = "editor",
-		style = "minimal",
-		border = "single",
-	}
-
-	if style == "flat" or style == "bordered" then
-		input_win_opts.row = input_win_opts.row - 2
-	end
-
-	state.input_win = api.nvim_open_win(state.input_buf, true, input_win_opts)
-
-	state.win = api.nvim_open_win(state.buf, false, {
-		row = 2,
-		col = -1,
-		width = state.w,
-		height = ((style == "flat" or style == "bordered") and h + 2) or h,
-		relative = "win",
-		style = "minimal",
-		border = "single",
-	})
-
-	vim.bo[state.input_buf].buftype = "prompt"
-	vim.fn.prompt_setprompt(state.input_buf, state.prompt)
-	vim.cmd("startinsert")
-
-	if opts.border then
-		api.nvim_set_hl(state.ns, "FloatBorder", { link = "Comment" })
-		api.nvim_set_hl(state.ns, "Normal", { link = "Normal" })
-		vim.wo[state.input_win].winhl = "Normal:Normal"
-	else
-		vim.wo[state.input_win].winhl = "Normal:ExBlack2Bg,FloatBorder:ExBlack2Border"
-		api.nvim_set_hl(state.ns, "Normal", { link = "ExDarkBg" })
-		api.nvim_set_hl(state.ns, "FloatBorder", { link = "ExDarkBorder" })
-	end
-
-	api.nvim_set_hl(state.ns, "NScrollbarOff", { fg = colors.one_bg2 })
-	api.nvim_win_set_hl_ns(state.win, state.ns)
-	api.nvim_set_current_win(state.input_win)
-
-	local volt_opts = { h = #state.val, w = state.w }
-
-	if state.style == "flat" or state.style == "bordered" then
-		local step = state.scroll_step[state.style]
-		volt_opts.h = (volt_opts.h * step) + 2
-	end
-
-	volt.run(state.buf, volt_opts)
-
-	----------------- keymaps --------------------------
-	volt.mappings({
-		bufs = { state.buf, state.input_buf },
-		after_close = function()
-			if not state.confirmed then
-				require("plenary.reload").reload_module("theme")
-				local theme = vim.g.nvimTheme
-				require("theme.utils").reload_theme(theme)
-			end
-			require("plenary.reload").reload_module("themes")
-			vim.cmd.stopinsert()
-		end,
-	})
-
-	require("theme.mappings")
-
-	if opts.mappings then
-		opts.mappings(state.input_buf)
-	end
+function M.random()
+	local random_theme = themes[math.random(#themes)]
+	set_theme(random_theme)
 end
 
 return M
