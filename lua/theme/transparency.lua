@@ -1,7 +1,7 @@
 local theme = require("theme")
 local utils = require("theme.colors")
 
-local colors = theme and theme.get_theme_tb and theme.get_theme_tb("main_colors")
+local colors = theme and theme.get_theme_tb and theme.get_theme_tb("base_30")
 local M = {}
 
 local function configure_general()
@@ -26,7 +26,7 @@ local function configure_general()
 	end
 
 	M.WinSeparator = {
-		fg = utils.blend(colors.white, colors.black, 0.1),
+		fg = utils.blend(colors.white, colors.black, 0.3),
 		bg = "NONE",
 	}
 end
@@ -71,7 +71,6 @@ local function configure_cmp()
 		"CmpItemAbbr",
 		"CmpItemAbbrDeprecated",
 		"CmpItemMenu",
-		"CmpBorder",
 		"CmpPmenu",
 	}
 
@@ -135,6 +134,10 @@ local function configure_miscellaneous()
 	M.AlphaIcon = { bg = "NONE" }
 	M.AlphaFooter = { bg = "NONE" }
 	M.NvimTreeWinSeparator = { bg = "NONE" }
+	M.CmpBorder = { fg = colors.grey, bg = "NONE" }
+	M.CmpDocBorder = { fg = colors.grey, bg = "NONE" }
+	M.NoiceCmdlinePopupBorder = { fg = colors.grey, bg = "NONE" }
+	M.NvimTreeWinSeparator = { fg = colors.grey, bg = "NONE" }
 end
 
 -- Run all configuration
