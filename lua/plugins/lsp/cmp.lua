@@ -17,43 +17,46 @@ return {
 		end
 
 		local kind_icons = {
-			Array = " 󰅪 ", -- Representa una lista o conjunto de datos
-			Boolean = " 󰨊 ", -- Booleanos
-			Class = " 󰠱 ", -- Clases
-			Color = " 󰏘 ", -- Representación de colores
-			Constant = " 󰏿 ", -- Constantes
-			Constructor = " 󰆧 ", -- Constructores
-			Enum = " 󰕘 ", -- Enumeraciones
-			EnumMember = " 󰕣 ", -- Miembros de enumeraciones
-			Event = " 󰘉 ", -- Eventos
-			Field = " 󰇾 ", -- Campos
-			File = " 󰈙 ", -- Archivos
-			Folder = " 󰉋 ", -- Carpetas
-			Function = " 󰊕 ", -- Funciones
-			Interface = " 󰋱 ", -- Interfaces
-			Key = " 󰌋 ", -- Claves
-			Keyword = " 󰇠 ", -- Palabras clave
-			Method = " 󰊕 ", -- Métodos
-			Module = " 󰌗 ", -- Módulos
-			Namespace = " 󰅪 ", -- Espacios de nombres
-			Null = " 󰟢 ", -- Valor nulo
-			Number = " 󰉹 ", -- Números
-			Object = " 󰇧 ", -- Objetos
-			Operator = " 󰆕 ", -- Operadores
-			Package = " 󰏓 ", -- Paquetes
-			Property = " 󰓹 ", -- Propiedades
-			Reference = " 󰦪 ", -- Referencias
-			Snippet = " 󰲡 ", -- Fragmentos
-			String = " 󰀬 ", -- Cadenas
-			Struct = " 󰖸 ", -- Estructuras
-			Text = " 󰈶 ", -- Texto
-			TypeParameter = " 󰗵 ", -- Parámetros de tipo
-			Unit = " 󰑑 ", -- Unidades
-			Value = " 󰠡 ", -- Valores
-			Variable = " 󰡦 ", -- Variables
-			Supermaven = " 󰗚 ", -- Icono especial para personalización
-			Codeium = " 󰌗 ", -- Codeium
-			Copilot = " 󰌗 ", -- Copilot
+			Namespace = " ",
+			Text = " ",
+			Method = " ",
+			Function = " ",
+			Constructor = " ",
+			Field = " ",
+			Variable = " ",
+			Class = " ",
+			Interface = " ",
+			Module = " ",
+			Property = " ",
+			Unit = " ",
+			Number = " ",
+			Constant = " ",
+			Enum = " ",
+			EnumMember = " ",
+			Keyword = " ",
+			Snippet = " ",
+			Color = " ",
+			File = " ",
+			Reference = " ",
+			Folder = " ",
+			Struct = " ",
+			Event = " ",
+			Operator = " ",
+			TypeParameter = " ",
+			Table = " ",
+			Object = " ",
+			Tag = " ",
+			Array = " ",
+			Boolean = " ",
+			Value = " ",
+			Null = " ",
+			String = " ",
+			Calendar = " ",
+			Watch = " ",
+			Package = " ",
+			Copilot = " ",
+			Codeium = " ",
+			Supermaven = " ",
 		}
 
 		cmp.setup({
@@ -68,16 +71,17 @@ return {
 
 			window = {
 				completion = {
-					border = "rounded",
+					border = vim.g.transparency and "rounded" or "solid",
 					scrollbar = false,
 					winhighlight = "Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
 				},
 				documentation = {
-					border = "rounded",
+					border = vim.g.transparency and "rounded" or "solid",
 					scrollbar = false,
 					winhighlight = "Normal:CmpPmenu,FloatBorder:CmpBorder,CursorLine:PmenuSel,Search:None",
 				},
 			},
+
 			mapping = cmp.mapping.preset.insert({
 				["<C-Space>"] = cmp.mapping.complete(),
 				["<Esc>"] = cmp.mapping.abort(),
