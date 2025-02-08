@@ -23,6 +23,7 @@ local run = function(STYLE)
 end
 
 local setup = function(STYLE)
+	STYLE = STYLE or "fancy"
 	vim.opt.statusline = run(STYLE)
 	vim.api.nvim_create_autocmd({ "ModeChanged", "CursorHold" }, {
 		callback = function()
