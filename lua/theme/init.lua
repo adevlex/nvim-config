@@ -1,5 +1,30 @@
 local M = {}
 local cache_path = vim.g.themeCache
+
+local function update_config_value(key, value)
+	local file_path = vim.fn.stdpath("config") .. "/lua/core/cfg.lua"
+	local lines = {}
+
+	local file = io.open(file_path, "r")
+	if file then
+		for line in file:lines() do
+			local updated_line = line:match(key .. "%s*=") and ("  " .. key .. " = " .. tostring(value) .. ",") or line
+			table.insert(lines, updated_line)
+		end
+		file:close()
+	end
+
+	file = io.open(file_path, "w")
+	if file then
+		for _, line in ipairs(lines) do
+			file:write(line .. "\n")
+		end
+		file:close()
+	else
+		vim.notify("Can't write to file", vim.log.levels.ERROR)
+	end
+end
+
 M.get_integrations = function()
 	local integrations_dir = vim.fn.stdpath("config") .. "/lua/theme/integrations/"
 	local files = vim.fn.glob(integrations_dir .. "*.lua", false, true)
@@ -39,7 +64,7 @@ local mixcolors = require("theme.colors").mix
 -- turns color var names in hl_override/hl_add to actual colors
 -- hl_add = { abc = { bg = "one_bg" }} -> bg = colors.one_bg
 M.turn_str_to_color = function(tb)
-	local colors = M.get_theme_tb("main_colors")
+	local colors = M.get_theme_tb("base_30")
 	local copy = vim.deepcopy(tb)
 
 	for _, hlgroups in pairs(copy) do
@@ -63,7 +88,7 @@ M.turn_str_to_color = function(tb)
 end
 
 M.extend_default_hl = function(highlights, integration_name)
-	local polish_hl = M.get_theme_tb("custom_highlights")
+	local polish_hl = M.get_theme_tb("polish_hl")
 
 	-- polish themes
 	if polish_hl and polish_hl[integration_name] then
@@ -130,7 +155,7 @@ M.str_to_cache = function(filename, str)
 end
 
 M.set_term = function()
-	local colors = require("theme").get_theme_tb("base16_palette")
+	local colors = require("theme").get_theme_tb("base_16")
 
 	local term = {
 		"base01",
@@ -165,7 +190,7 @@ M.set_color_vars = function()
 	local present1, default_theme = pcall(require, "theme.schemes." .. vim.g.nvimTheme)
 	local colors = (present1 and default_theme) or require("schemes." .. vim.g.nvimTheme)
 
-	for name, hex in pairs(colors.main_colors) do
+	for name, hex in pairs(colors.base_30) do
 		str = str .. name .. "='" .. hex
 		str = str .. "',"
 	end
@@ -220,6 +245,9 @@ M.toggle_transparency = function()
 		vim.g.transparency = false
 	end
 	vim.g.transparency = not vim.g.transparency
+
+	update_config_value("transparency", tostring(vim.g.transparency))
+
 	require("theme").load_all_highlights()
 	vim.notify("Transparency: " .. tostring(vim.g.transparency), vim.log.levels.INFO)
 end
