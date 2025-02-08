@@ -3,7 +3,7 @@
 
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#ffffff", -- custom
 	darker_black = "#232738",
 	black = "#292D3E", --  nvim bg
@@ -36,7 +36,7 @@ M.main_colors = {
 	folder_bg = "#82aaff",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#292d3e",
 	base01 = "#444267",
 	base02 = "#32374d",
@@ -55,10 +55,10 @@ M.base16_palette = {
 	base0F = "#ff5370",
 }
 
-M.custom_highlights = {
+M.polish_hl = {
 	treesitter = {
-		["@keyword.import"] = { fg = M.main_colors.purple },
-		["@variable.member.key"] = { fg = M.main_colors.orange },
+		["@keyword.import"] = { fg = M.base_30.purple },
+		["@variable.member.key"] = { fg = M.base_30.orange },
 	},
 }
 

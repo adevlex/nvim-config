@@ -3,7 +3,7 @@
 
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#ced4df",
 	darker_black = "#05080e",
 	black = "#0B0E14", --  nvim bg
@@ -36,7 +36,7 @@ M.main_colors = {
 	folder_bg = "#98a3af",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#0B0E14",
 	base01 = "#1c1f25",
 	base02 = "#24272d",
@@ -55,14 +55,14 @@ M.base16_palette = {
 	base0F = "#CBA6F7",
 }
 
-M.custom_highlights = {
+M.polish_hl = {
 	treesitter = {
-		luaTSField = { fg = M.base16_palette.base0D },
-		["@tag.delimiter"] = { fg = M.main_colors.cyan },
-		["@function"] = { fg = M.main_colors.orange },
-		["@variable.parameter"] = { fg = M.base16_palette.base0F },
-		["@constructor"] = { fg = M.base16_palette.base0A },
-		["@tag.attribute"] = { fg = M.main_colors.orange },
+		luaTSField = { fg = M.base_16.base0D },
+		["@tag.delimiter"] = { fg = M.base_30.cyan },
+		["@function"] = { fg = M.base_30.orange },
+		["@variable.parameter"] = { fg = M.base_16.base0F },
+		["@constructor"] = { fg = M.base_16.base0A },
+		["@tag.attribute"] = { fg = M.base_30.orange },
 	},
 }
 

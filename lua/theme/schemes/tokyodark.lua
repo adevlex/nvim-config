@@ -3,7 +3,7 @@
 
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#A0A8CD",
 	darker_black = "#0c0d18",
 	black = "#11121D", --  nvim bg
@@ -36,7 +36,7 @@ M.main_colors = {
 	folder_bg = "#7199ee",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#11121d",
 	base01 = "#1b1c27",
 	base02 = "#21222d",

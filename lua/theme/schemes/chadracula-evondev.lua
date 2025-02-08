@@ -3,7 +3,7 @@
 
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#F8F8F2",
 	darker_black = "#19192c",
 	black = "#141423",
@@ -39,12 +39,12 @@ M.main_colors = {
 	brownred = "#5D2932",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#141423",
-	base01 = M.main_colors.one_bg,
-	base02 = M.main_colors.one_bg2,
-	base03 = M.main_colors.one_bg3,
-	base04 = M.main_colors.grey,
+	base01 = M.base_30.one_bg,
+	base02 = M.base_30.one_bg2,
+	base03 = M.base_30.one_bg3,
+	base04 = M.base_30.grey,
 	base05 = "#E9E9F4",
 	base06 = "#F1F2F8",
 	base07 = "#F7F7FB",
@@ -58,35 +58,35 @@ M.base16_palette = {
 	base0F = "#7e7eb5",
 }
 
-M.custom_highlights = {
+M.polish_hl = {
 	treesitter = {
-		["@function.builtin"] = { fg = M.main_colors.cyan },
-		["@number"] = { fg = M.main_colors.purple },
-		["@module"] = { fg = M.main_colors.white },
-		["@function.call"] = { fg = M.main_colors.vibrant_green },
-		["@function"] = { fg = M.main_colors.green },
-		["@keyword.repeat"] = { fg = M.main_colors.green },
+		["@function.builtin"] = { fg = M.base_30.cyan },
+		["@number"] = { fg = M.base_30.purple },
+		["@module"] = { fg = M.base_30.white },
+		["@function.call"] = { fg = M.base_30.vibrant_green },
+		["@function"] = { fg = M.base_30.green },
+		["@keyword.repeat"] = { fg = M.base_30.green },
 	},
 
 	syntax = {
-		Include = { fg = M.main_colors.pink },
-		Error = { fg = M.main_colors.red },
-		Identifier = { fg = M.main_colors.white },
-		Function = { fg = M.main_colors.vibrant_green },
-		String = { fg = M.main_colors.orange },
-		Keyword = { fg = M.main_colors.pink },
-		Constant = { fg = M.main_colors.violet },
-		Type = { fg = M.main_colors.blue },
+		Include = { fg = M.base_30.pink },
+		Error = { fg = M.base_30.red },
+		Identifier = { fg = M.base_30.white },
+		Function = { fg = M.base_30.vibrant_green },
+		String = { fg = M.base_30.orange },
+		Keyword = { fg = M.base_30.pink },
+		Constant = { fg = M.base_30.violet },
+		Type = { fg = M.base_30.blue },
 	},
 
 	git = {
-		DiffAdd = { fg = M.main_colors.darkgreen },
-		DiffDelete = { fg = M.main_colors.brownred },
+		DiffAdd = { fg = M.base_30.darkgreen },
+		DiffDelete = { fg = M.base_30.brownred },
 	},
 
 	nvimtree = {
-		NvimTreeFolderName = { fg = M.main_colors.white },
-		NvimTreeOpenedFolderName = { fg = M.main_colors.white, bold = true },
+		NvimTreeFolderName = { fg = M.base_30.white },
+		NvimTreeOpenedFolderName = { fg = M.base_30.white, bold = true },
 	},
 }
 

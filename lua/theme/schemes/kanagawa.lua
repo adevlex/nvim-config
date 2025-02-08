@@ -3,7 +3,7 @@
 
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#DCD7BA",
 	darker_black = "#191922",
 	black = "#1F1F28", --  nvim bg
@@ -36,7 +36,7 @@ M.main_colors = {
 	folder_bg = "#7E9CD8",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#1f1f28",
 	base01 = "#2a2a37",
 	base02 = "#223249",
@@ -55,18 +55,18 @@ M.base16_palette = {
 	base0F = "#d8616b",
 }
 
-M.custom_highlights = {
+M.polish_hl = {
 	treesitter = {
-		["@keyword.import"] = { fg = M.main_colors.purple },
-		["@uri"] = { fg = M.main_colors.blue },
-		["@tag.delimiter"] = { fg = M.main_colors.red },
-		["@variable.member.key"] = { fg = M.main_colors.white },
-		["@punctuation.bracket"] = { fg = M.main_colors.pmenu_bg },
-		["@punctuation.delimiter"] = { fg = M.main_colors.white },
+		["@keyword.import"] = { fg = M.base_30.purple },
+		["@uri"] = { fg = M.base_30.blue },
+		["@tag.delimiter"] = { fg = M.base_30.red },
+		["@variable.member.key"] = { fg = M.base_30.white },
+		["@punctuation.bracket"] = { fg = M.base_30.pmenu_bg },
+		["@punctuation.delimiter"] = { fg = M.base_30.white },
 	},
 
 	syntax = {
-		Number = { fg = M.main_colors.baby_pink },
+		Number = { fg = M.base_30.baby_pink },
 	},
 }
 

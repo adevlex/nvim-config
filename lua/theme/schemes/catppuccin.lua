@@ -1,6 +1,6 @@
 local M = {}
 
-M.main_colors = {
+M.base_30 = {
 	white = "#D9E0EE",
 	darker_black = "#191828",
 	black = "#1E1D2D", -- nvim bg
@@ -34,7 +34,7 @@ M.main_colors = {
 	lavender = "#c7d1ff",
 }
 
-M.base16_palette = {
+M.base_16 = {
 	base00 = "#1E1D2D",
 	base01 = "#282737",
 	base02 = "#2f2e3e",
@@ -53,11 +53,11 @@ M.base16_palette = {
 	base0F = "#F38BA8",
 }
 
-M.custom_highlights = {
+M.polish_hl = {
 	treesitter = {
-		["@variable"] = { fg = M.main_colors.lavender },
-		["@property"] = { fg = M.main_colors.teal },
-		["@variable.builtin"] = { fg = M.main_colors.red },
+		["@variable"] = { fg = M.base_30.lavender },
+		["@property"] = { fg = M.base_30.teal },
+		["@variable.builtin"] = { fg = M.base_30.red },
 	},
 }
 
