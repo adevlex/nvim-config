@@ -1,6 +1,5 @@
 local M = {}
 
-local plugins_count = require("lazy").stats().count
 local logos = setmetatable({
 	TEXT = [[
 ██╗  ██╗ ██████╗       ██████╗  ██████╗
@@ -67,14 +66,37 @@ local logos = setmetatable({
       Powered By  eovim    
                              
     ]],
+	GENTLEMAN = [[ 
+                          ░░░░░░      ░░░░░░                        
+                      ░░░░░░░░░░  ░░░░░░░░░░                      
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░                    
+                  ░░░░░░░░░░▒▒▒▒░░▒▒▒▒░░░░░░░░░░                  
+      ░░░░      ░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░        ░░░░    
+    ▒▒░░      ░░░░░░▒▒▒▒▒▒▒▒▒▒██▒▒██▒▒▒▒▒▒▒▒▒▒░░░░░░        ▒▒░░  
+    ▒▒░░    ░░░░░░░░▒▒▒▒▒▒▒▒▒▒████▒▒████▒▒▒▒▒▒▒▒▒▒░░░░░░░░  ▒▒░░▒ 
+    ▒▒▒▒░░░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒██████▒▒██████▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒ 
+    ██▒▒▒▒▒▒▒▒▒▒▒▒▒▒██▒▒▒▒██████▓▓██▒▒██████▒▒▓▓██▒▒▒▒▒▒▒▒▒▒▒▒▒▒█ 
+    ████▒▒▒▒▒▒████▒▒▒▒██████████  ██████████▒▒▒▒████▒▒▒▒▒▒▒▒██    
+      ████████████████████████      ████████████████████████      
+        ██████████████████              ██████████████████        
+            ██████████                      ██████████
+
+                   󱗞   entleman -  rograming 󱗞
+  ]],
 }, {
 	__index = function(logos, key)
 		return logos[key]
 	end,
 })
+
+local function get_lazy_stats()
+	local stats = require("lazy").stats()
+	return stats.count, stats.startuptime
+end
+
 -- the keybinds for buttons better work
 M.dashboard = {
-	header = vim.split(logos.NVCHAD, "\n"),
+	header = vim.split(logos.GENTLEMAN, "\n"),
 	buttons = {
 		{ "   Find File", "LDR f f" },
 		{ "󰈚   Recent Files", "LDR f r" },
@@ -83,9 +105,13 @@ M.dashboard = {
 	message = {
 		"[ ━━━━━━ ❖  ━━━━━━ ]",
 	},
-	footer = {
-		"󰮯      Plugins Instalados: " .. plugins_count,
-	},
+	footer = function()
+		local plugins_count, time_start = get_lazy_stats()
+		return {
+			"󰮯      Plugins Instalados: " .. plugins_count,
+			"⏳ Tiempo de inicio: " .. string.format("%.2f", time_start) .. "ms",
+		}
+	end,
 }
 
 return M
