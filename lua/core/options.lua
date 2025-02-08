@@ -55,9 +55,11 @@ g["loaded_python3_provider"] = 0
 g["loaded_perl_provider"] = 0
 g["loaded_ruby_provider"] = 0
 
+local cfg = require("core.cfg").ui
+
 g.toggle_cmp = true
 g.code_action_menu_window_border = "single"
-g.nvimTheme = "catppuccin"
+g.nvimTheme = cfg.theme
 g.themeCache = vim.fn.stdpath("data") .. "/colors_data/"
-g.transparency = false
-g.statusStyle = "blocks" -- fancy, minimal, blocks
+g.transparency = cfg.transparency
+g.statusStyle = cfg.statusStyle
