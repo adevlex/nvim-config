@@ -134,5 +134,10 @@ end, { noremap = true, silent = true, desc = "Buscar archivos (con datos privado
 
 -- Themes
 map("n", "<leader>ft", function()
-	require("theme.pick").open()
+	require("theme.pick").setup()
 end, { desc = "telescope themes" })
+
+-- Statusline
+map("n", "<leader>us", function()
+	require("ui/stl/pickstl").select_status_style()
+end, { desc = "Change Statusline Style" })
